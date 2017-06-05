@@ -1,16 +1,23 @@
 {% extends "base.html" %}
 
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename="css/diagnostics/selection.css") }}">
+{% endblock %}
+
 {% block content %}
     
     <div class="col-sm-10">
       <div class="container">
-        <ul class="nav navbar-nav">
-          {% for airport in airports %}
-            <li>
-              <a href="/diagnostics/{{ airport }}">{{ airport.name }}</a>
-            </li>
-          {% endfor %} 
-        </ul>
+        {% for airport in airports %}
+        <div class="dropdown">
+          <button class="dropbtn">{{ airport[1] }}</button>
+          <div class="dropdown-content">
+            {% for diagTime in airport[2] %}
+            <a href="/diagnostics/{{ airport[0] }}/{{ diagTime.strftime('%Y-%m-%d')}}">{{ diagTime.strftime('%B %d, %Y') }}</a>
+            {% endfor %}
+          </div>
+        </div>
+        {% endfor %}
       </div>
     </div>
 

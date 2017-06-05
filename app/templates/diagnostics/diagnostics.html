@@ -1,8 +1,9 @@
 {% extends "base.html" %}
 
-<!-- {% block css %}
-#put specific css file here
-{% endblock %} -->
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename="css/diagnostics/diagnostics.css") }}">
+<script type="text/javascript" src="{{ url_for('static', filename="js/diagnostics/diagnostics.js") }}"></script>
+{% endblock %}
 
 {% block content %}
     
@@ -24,12 +25,25 @@
             </div>
           </div>
           <div class="col-sm-3">
-            <div class="well">
-              <select class="selectpicker form-control">
-                  <option value="2015">2015</option>
-                  <option value="2016">2016</option>
-              </select>
+            <div class="dropdown">
+              <button onclick="myFunction()" class="dropbtn">{{ current_Time.strftime('%B %d, 
+                %Y') }}</button>
+              <div id="myDropdown" class="dropdown-content">
+                {% for time in diagTime %}
+                <a href="/diagnostics/{{ airport_info.iata_code }}/{{ 
+                time.strftime('%Y-%m-%d')}}">{{ time.strftime('%B %d, 
+                %Y') }}</a>
+                {% endfor %}
+              </div>
             </div>
+
+<!--             <div class="well">
+              <select class="selectpicker form-control">
+                {% for time in diagTime %}
+                  <option value="2015">{{ time.strftime('%B %d, %Y') }}</option>
+                {% endfor %}
+              </select>
+            </div> -->
           </div>
           <div class="col-sm-3">
             <div class="well">

@@ -3,6 +3,7 @@ from flaskext.mysql import MySQL
 from app import app
 from flask_login import login_required
 from app.models import Airport, Check_in
+import datetime
 
 mysql = MySQL()
 # MySQL configurations
@@ -22,25 +23,36 @@ def index():
 @mod.route('/selection',methods=['POST','GET'])
 @login_required
 def selection():
+    airport_info = Airport.query.all()
+    airports = []
+    for airport in airport_info:
+        if get_diagTimes(airport) != []:     # Remove airports without any diagnostics performed
+            airports.append([airport, airport.name , get_diagTimes(airport)])
+    # print (airports)
     return render_template("diagnostics/selection.html",
                             title = 'Selection',
-                            airports = Airport.query.all())
+                            airports = airports)
 
-@mod.route('/<airport_code>/')
-@login_required
-def diagnostics(airport_code):
-    return render_template("diagnostics/diagnostics.html",
-                            title = "Diagnostics for "+ airport_code,
-                            airport_info = Airport.query.get(airport_code))
-
-# @mod.route('/<airport_code>/<diag_time>')
+# @mod.route('/<airport_code>/')
 # @login_required
-# def diagnostics(airport_code, diag_time):
-# 	diag_timings = Check_in.query.filter(Check_in.airport_id == airport_code)
-	
-# 	if diag_time is None:
-# 		print('ha')
-# 		pass
-#     return render_template("diagnostics/diagnostics.html", 
-#                             title = "Diagnostics for "+ airport_code, 
-#                             airport_info = Airport.query.get(airport_code))
+# def diagnostics(airport_code):
+#     return redirect(url_for('diagnostics.selection'))
+
+@mod.route('/<airport_code>/<diag_time>')       #access it by using diag_time = dd/mm/year e.g. http://127.0.0.1:5000/diagnostics/AER/2015-02-12
+@login_required
+def diagnostics(airport_code, diag_time):
+    current_Time = datetime.datetime.strptime(diag_time, "%Y-%m-%d")
+    # print (type(current_Time))
+    return render_template("diagnostics/diagnostics.html", 
+                            title = "Diagnostics for "+ airport_code, 
+                            airport_info = Airport.query.get(airport_code),
+                            diagTime = get_diagTimes(airport_code),
+                            current_Time = current_Time)
+
+# Get time of diagnosis for a certain airport
+def get_diagTimes(airport_code):
+    selection = Check_in.query.filter(Check_in.airport_id==airport_code).all()
+    diag_timings = []
+    for i in selection:
+        diag_timings.append(i.diag_time)
+    return (diag_timings)

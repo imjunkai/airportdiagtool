@@ -39,7 +39,7 @@ class Airport(db.Model):
 
 class Check_in(db.Model):
 	airport_id = db.Column(db.String(3), db.ForeignKey('airport.iata_code'), primary_key=True)
-	diag_time = db.Column(db.DateTime, primary_key=True)
+	diag_time = db.Column(db.Date, primary_key=True)
 	uti_rate = db.Column(db.Float, nullable=False)
 	queue_avgpeople = db.Column(db.Float, nullable=False)
 	queue_waitingtime = db.Column(db.Float, nullable=False)
@@ -56,4 +56,31 @@ class Check_in(db.Model):
 		self.sys_waitingtime = kwargs['sys_waitingtime']
 
 	def __repr__(self):
-		return self.airport_id, self.diag_time
+		return '%s, %s' % (self.airport_id, self.diag_time)
+
+	# @property
+	# def getTime(self, airport_id):
+	# 	if airport_id = self.airport_id:
+	# 		return self.diag_time
+	# 	else:
+	# 		return "None found"
+
+	# @property
+	# def getDiagTime(self):
+	# def __repr__(self):
+	# 	return {
+	# 	'airport_id': self.airport_id,
+	# 	'diag_time': self.diag_time
+	# 	}
+
+	@property
+	def proc_info(self):
+		return {
+		'airport_id': self.airport_id,
+		'diag_time': self.diag_time,
+		'uti_rate': self.uti_rate,
+		'queue_avgpeople': self.queue_avgpeople,
+		'queue_waitingtime': self.queue_waitingtime,
+		'sys_avgpeople': self.sys_avgpeople,
+		'sys_waitingtime': self.sys_waitingtime,
+		}
