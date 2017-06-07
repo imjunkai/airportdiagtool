@@ -26,12 +26,38 @@ delete_check_in = text(
     'DELETE FROM check_in'
 )
 
+insert_emigration = text(
+    """INSERT INTO emigration VALUES
+    ('AER', '2015-02-12', '0.85', '5.62', '3.22', '3.42', '4.13'),
+    ('KRR', '2015-05-12', '0.85', '5.62', '3.22', '3.42', '4.13'),
+    ('SIN', '2015-07-12', '0.85', '5.62', '3.22', '3.42', '4.13')
+    """
+)
+
+delete_emigration = text(
+    'DELETE FROM emigration'
+)
+
+insert_security = text(
+    """INSERT INTO security_checkpoint VALUES
+    ('AER', '2015-02-12', '0.85', '5.62', '3.22', '3.42', '4.13'),
+    ('KRR', '2015-05-12', '0.85', '5.62', '3.22', '3.42', '4.13'),
+    ('SIN', '2015-07-12', '0.85', '5.62', '3.22', '3.42', '4.13')
+    """
+)
+
+delete_security = text(
+    'DELETE FROM security_checkpoint'
+)
+
 def run():
     db.engine.execute(insert_airport)
     db.engine.execute(insert_check_in)
-    # db.engine.execute(insert_appointment)
+    db.engine.execute(insert_emigration)
+    db.engine.execute(insert_security)
 
 def clear():
-	db.engine.execute(delete_check_in)
-	db.engine.execute(delete_airport)
-	# db.engine.execute(delete_patient)
+    db.engine.execute(delete_security)
+    db.engine.execute(delete_emigration)
+    db.engine.execute(delete_check_in)
+    db.engine.execute(delete_airport)

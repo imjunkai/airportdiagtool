@@ -55,24 +55,36 @@
         <div class="row">
           <div class="col-sm-4">
             <div class="well">
-              <h2>Process</h2>
-              <p>insert graph here</p> 
+              <h2>Check-in</h2>
+              <p>Utilizaition Rate: {{ checkin_info.uti_rate }}</p>
+              <p>Queue (Average no. of people): {{ checkin_info.queue_avgpeople }}</p>
+              <p>Queue (Waiting Time): {{ checkin_info.queue_waitingtime }}</p>
+              <p>System (Average no. of people): {{ checkin_info.sys_avgpeople }}</p>
+              <p>System (Waiting Time): {{ checkin_info.sys_waitingtime }}</p>
             </div>
           </div>
           <div class="col-sm-4">
             <div class="well">
-              <h2>Process</h2>
-              <p>insert graph here</p> 
+              <h2>Emigration (Passport Control)</h2>
+              <p>Utilizaition Rate: {{ emigration_info.uti_rate }}</p>
+              <p>Queue (Average no. of people): {{ emigration_info.queue_avgpeople }}</p>
+              <p>Queue (Waiting Time): {{ emigration_info.queue_waitingtime }}</p>
+              <p>System (Average no. of people): {{ emigration_info.sys_avgpeople }}</p>
+              <p>System (Waiting Time): {{ emigration_info.sys_waitingtime }}</p>
             </div>
           </div>
           <div class="col-sm-4">
             <div class="well">
-              <h2>Process</h2>
-              <p>insert graph here</p> 
+              <h2>Security Checkpoint</h2>
+              <p>Utilizaition Rate: {{ security_info.uti_rate }}</p>
+              <p>Queue (Average no. of people): {{ security_info.queue_avgpeople }}</p>
+              <p>Queue (Waiting Time): {{ security_info.queue_waitingtime }}</p>
+              <p>System (Average no. of people): {{ security_info.sys_avgpeople }}</p>
+              <p>System (Waiting Time): {{ security_info.sys_waitingtime }}</p>
             </div>
           </div>
         </div>
-        <div class="row">
+<!--         <div class="row">
           <div class="col-sm-4">
             <div class="well">
               <h2>Process</h2>
@@ -91,7 +103,7 @@
               <p>insert graph here</p> 
             </div>
           </div>
-        </div>
+        </div> -->
         <div class="row">
           <div class="viewall">
             <a href="#viewall">view all processes</a>

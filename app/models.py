@@ -58,26 +58,77 @@ class Check_in(db.Model):
 	def __repr__(self):
 		return '%s, %s' % (self.airport_id, self.diag_time)
 
-	# @property
-	# def getTime(self, airport_id):
-	# 	if airport_id = self.airport_id:
-	# 		return self.diag_time
-	# 	else:
-	# 		return "None found"
+	@property
+	def proc_info(self):
+		return {
+		# 'airport_id': self.airport_id,
+		# 'diag_time': self.diag_time,
+		'uti_rate': self.uti_rate,
+		'queue_avgpeople': self.queue_avgpeople,
+		'queue_waitingtime': self.queue_waitingtime,
+		'sys_avgpeople': self.sys_avgpeople,
+		'sys_waitingtime': self.sys_waitingtime,
+		}
 
-	# @property
-	# def getDiagTime(self):
-	# def __repr__(self):
-	# 	return {
-	# 	'airport_id': self.airport_id,
-	# 	'diag_time': self.diag_time
-	# 	}
+class Emigration(db.Model):
+	airport_id = db.Column(db.String(3), db.ForeignKey('airport.iata_code'), primary_key=True)
+	diag_time = db.Column(db.Date, primary_key=True)
+	uti_rate = db.Column(db.Float, nullable=False)
+	queue_avgpeople = db.Column(db.Float, nullable=False)
+	queue_waitingtime = db.Column(db.Float, nullable=False)
+	sys_avgpeople = db.Column(db.Float, nullable=False)
+	sys_waitingtime = db.Column(db.Float, nullable=False)
+
+	def __init__(self,**kwargs):
+		self.airport_id = kwargs['airport_id']
+		self.diag_time = kwargs['diag_time']
+		self.uti_rate = kwargs['uti_rate']
+		self.queue_avgpeople = kwargs['queue_avgpeople']
+		self.queue_waitingtime = kwargs['queue_waitingtime']
+		self.sys_avgpeople = kwargs['sys_avgpeople']
+		self.sys_waitingtime = kwargs['sys_waitingtime']
+
+	def __repr__(self):
+		return '%s, %s' % (self.airport_id, self.diag_time)
 
 	@property
 	def proc_info(self):
 		return {
-		'airport_id': self.airport_id,
-		'diag_time': self.diag_time,
+		# 'airport_id': self.airport_id,
+		# 'diag_time': self.diag_time,
+		'uti_rate': self.uti_rate,
+		'queue_avgpeople': self.queue_avgpeople,
+		'queue_waitingtime': self.queue_waitingtime,
+		'sys_avgpeople': self.sys_avgpeople,
+		'sys_waitingtime': self.sys_waitingtime,
+		}
+
+class Security_checkpoint(db.Model):
+	airport_id = db.Column(db.String(3), db.ForeignKey('airport.iata_code'), primary_key=True)
+	diag_time = db.Column(db.Date, primary_key=True)
+	uti_rate = db.Column(db.Float, nullable=False)
+	queue_avgpeople = db.Column(db.Float, nullable=False)
+	queue_waitingtime = db.Column(db.Float, nullable=False)
+	sys_avgpeople = db.Column(db.Float, nullable=False)
+	sys_waitingtime = db.Column(db.Float, nullable=False)
+
+	def __init__(self,**kwargs):
+		self.airport_id = kwargs['airport_id']
+		self.diag_time = kwargs['diag_time']
+		self.uti_rate = kwargs['uti_rate']
+		self.queue_avgpeople = kwargs['queue_avgpeople']
+		self.queue_waitingtime = kwargs['queue_waitingtime']
+		self.sys_avgpeople = kwargs['sys_avgpeople']
+		self.sys_waitingtime = kwargs['sys_waitingtime']
+
+	def __repr__(self):
+		return '%s, %s' % (self.airport_id, self.diag_time)
+
+	@property
+	def proc_info(self):
+		return {
+		# 'airport_id': self.airport_id,
+		# 'diag_time': self.diag_time,
 		'uti_rate': self.uti_rate,
 		'queue_avgpeople': self.queue_avgpeople,
 		'queue_waitingtime': self.queue_waitingtime,
