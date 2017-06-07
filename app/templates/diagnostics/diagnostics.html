@@ -1,0 +1,133 @@
+{% extends "base.html" %}
+
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename="css/diagnostics/diagnostics.css") }}">
+<script type="text/javascript" src="{{ url_for('static', filename="js/diagnostics/diagnostics.js") }}"></script>
+{% endblock %}
+
+{% block content %}
+    
+    <div class="col-sm-10">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-sm-6">
+            <h1>
+              {{ airport_info.name }}, {{ airport_info.iata_code }}
+            </h1>
+            <div class="airport-info">
+              <ul class='list-inline'>
+                <li>IATA: {{ airport_info.iata_code }}</li>
+                <li>ICAO: {{ airport_info.icao_code }}</li>
+                <li>City: {{ airport_info.city }}</li>
+                <li>Country: {{ airport_info.country }}</li>
+                <li>Size: {{ airport_info.size }}</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="dropdown">
+              <button onclick="myFunction()" class="dropbtn">{{ current_Time.strftime('%B %d, 
+                %Y') }}</button>
+              <div id="myDropdown" class="dropdown-content">
+                {% for time in diagTime %}
+                <a href="/diagnostics/{{ airport_info.iata_code }}/{{ 
+                time.strftime('%Y-%m-%d')}}">{{ time.strftime('%B %d, 
+                %Y') }}</a>
+                {% endfor %}
+              </div>
+            </div>
+
+<!--             <div class="well">
+              <select class="selectpicker form-control">
+                {% for time in diagTime %}
+                  <option value="2015">{{ time.strftime('%B %d, %Y') }}</option>
+                {% endfor %}
+              </select>
+            </div> -->
+          </div>
+          <div class="col-sm-3">
+            <div class="well">
+              <h1>83.5%</h1>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="well">
+              <h2>Check-in</h2>
+              <p>Utilizaition Rate: {{ checkin_info.uti_rate }}</p>
+              <p>Queue (Average no. of people): {{ checkin_info.queue_avgpeople }}</p>
+              <p>Queue (Waiting Time): {{ checkin_info.queue_waitingtime }}</p>
+              <p>System (Average no. of people): {{ checkin_info.sys_avgpeople }}</p>
+              <p>System (Waiting Time): {{ checkin_info.sys_waitingtime }}</p>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="well">
+              <h2>Emigration (Passport Control)</h2>
+              <p>Utilizaition Rate: {{ emigration_info.uti_rate }}</p>
+              <p>Queue (Average no. of people): {{ emigration_info.queue_avgpeople }}</p>
+              <p>Queue (Waiting Time): {{ emigration_info.queue_waitingtime }}</p>
+              <p>System (Average no. of people): {{ emigration_info.sys_avgpeople }}</p>
+              <p>System (Waiting Time): {{ emigration_info.sys_waitingtime }}</p>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="well">
+              <h2>Security Checkpoint</h2>
+              <p>Utilizaition Rate: {{ security_info.uti_rate }}</p>
+              <p>Queue (Average no. of people): {{ security_info.queue_avgpeople }}</p>
+              <p>Queue (Waiting Time): {{ security_info.queue_waitingtime }}</p>
+              <p>System (Average no. of people): {{ security_info.sys_avgpeople }}</p>
+              <p>System (Waiting Time): {{ security_info.sys_waitingtime }}</p>
+            </div>
+          </div>
+        </div>
+<!--         <div class="row">
+          <div class="col-sm-4">
+            <div class="well">
+              <h2>Process</h2>
+              <p>insert graph here</p> 
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="well">
+              <h2>Process</h2>
+              <p>insert graph here</p> 
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="well">
+              <h2>Process</h2>
+              <p>insert graph here</p> 
+            </div>
+          </div>
+        </div> -->
+        <div class="row">
+          <div class="viewall">
+            <a href="#viewall">view all processes</a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="well">
+              <h2>Benchmarking (yearly score)</h2>
+              <p>insert graph here</p> 
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="well">
+              <h2>Benchmarking (similar size)</h2>
+              <p>insert graph here</p> 
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
+{% endblock %}
