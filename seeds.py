@@ -1,12 +1,6 @@
 from app import db
 from sqlalchemy import text
 
-insert_admin = text(
-    """INSERT INTO user VALUES
-    ('admin','admin')
-    """
-)
-
 insert_airport = text(
     """INSERT INTO airport VALUES
     ('AER', 'URSS', 'Sochi International Airport', 'Sochi', 'Russia', 'Medium'),
