@@ -1,17 +1,17 @@
 from flask import Blueprint, render_template, redirect, flash, url_for
-from flaskext.mysql import MySQL
+# from flaskext.mysql import MySQL
 from app import app
 from flask_login import login_required
 from app.models import Airport, Check_in, Emigration, Security_checkpoint
 import datetime
 
-mysql = MySQL()
-# MySQL configurations
-app.config['MYSQL_DATABASE_USER'] = 'root'
-app.config['MYSQL_DATABASE_PASSWORD'] = 'password'
-app.config['MYSQL_DATABASE_DB'] = 'adt'
-app.config['MYSQL_DATABASE_HOST'] = 'localhost'
-mysql.init_app(app)
+# mysql = MySQL()
+# # MySQL configurations
+# app.config['MYSQL_DATABASE_USER'] = 'root'
+# app.config['MYSQL_DATABASE_PASSWORD'] = 'password'
+# app.config['MYSQL_DATABASE_DB'] = 'adt'
+# app.config['MYSQL_DATABASE_HOST'] = 'localhost'
+# mysql.init_app(app)
 
 mod = Blueprint('diagnostics', __name__, url_prefix='/diagnostics')
 
