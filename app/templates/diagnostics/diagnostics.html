@@ -9,8 +9,8 @@
     
     <div class="col-sm-10">
       <div class="container-fluid">
-        <div class="row">
-          <div class="col-sm-6">
+        <div class="row well top">
+          <div class="col-sm-7">
             <h1>
               {{ airport_info.name }}, {{ airport_info.iata_code }}
             </h1>
@@ -36,90 +36,125 @@
                 {% endfor %}
               </div>
             </div>
-
-<!--             <div class="well">
-              <select class="selectpicker form-control">
-                {% for time in diagTime %}
-                  <option value="2015">{{ time.strftime('%B %d, %Y') }}</option>
-                {% endfor %}
-              </select>
-            </div> -->
           </div>
-          <div class="col-sm-3">
-            <div class="well">
-              <h1>83.5%</h1>
+          <div class="col-sm-2">
+            <div class="panel panel-score">
+                {{ score }}%
+              </div>
             </div>
           </div>
         </div>
 
         <div class="row">
           <div class="col-sm-4">
-            <div class="well">
-              <h2>Check-in</h2>
-              <p>Utilizaition Rate: {{ checkin_info.uti_rate }}</p>
-              <p>Queue (Average no. of people): {{ checkin_info.queue_avgpeople }}</p>
-              <p>Queue (Waiting Time): {{ checkin_info.queue_waitingtime }}</p>
-              <p>System (Average no. of people): {{ checkin_info.sys_avgpeople }}</p>
-              <p>System (Waiting Time): {{ checkin_info.sys_waitingtime }}</p>
+            <div class="panel panel-checkin">
+              <div class="panel-heading"><h2>Check-in</h2></div>
+              <div class="panel-body">
+                <table class="table table-hover">
+                  <tbody>
+                    <tr>
+                      <td>Utilization Rate:</td>
+                      <td>{{ checkin_info.uti_rate }}</td>
+                    </tr>
+                    <tr>
+                      <td>Queue (Average no. of people):</td>
+                      <td>{{ checkin_info.queue_avgpeople }}</td>
+                    </tr>
+                    <tr>
+                      <td>Queue (Waiting Time):</td>
+                      <td>{{ checkin_info.queue_waitingtime }}</td>
+                    </tr>
+                    <tr>
+                      <td>System (Average no. of people):</td>
+                      <td>{{ checkin_info.sys_avgpeople }}</td>
+                    </tr>
+                    <tr>
+                      <td>System (Waiting Time):</td>
+                      <td>{{ checkin_info.sys_waitingtime }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
           <div class="col-sm-4">
-            <div class="well">
-              <h2>Emigration (Passport Control)</h2>
-              <p>Utilizaition Rate: {{ emigration_info.uti_rate }}</p>
-              <p>Queue (Average no. of people): {{ emigration_info.queue_avgpeople }}</p>
-              <p>Queue (Waiting Time): {{ emigration_info.queue_waitingtime }}</p>
-              <p>System (Average no. of people): {{ emigration_info.sys_avgpeople }}</p>
-              <p>System (Waiting Time): {{ emigration_info.sys_waitingtime }}</p>
+            <div class="panel panel-emigration">
+              <div class="panel-heading"><h2>Emigration</h2></div>
+              <div class="panel-body"> 
+                <table class="table table-hover">
+                  <tbody>
+                    <tr>
+                      <td>Utilization Rate:</td>
+                      <td>{{ emigration_info.uti_rate }}</td>
+                    </tr>
+                    <tr>
+                      <td>Queue (Average no. of people):</td>
+                      <td>{{ emigration_info.queue_avgpeople }}</td>
+                    </tr>
+                    <tr>
+                      <td>Queue (Waiting Time):</td>
+                      <td>{{ emigration_info.queue_waitingtime }}</td>
+                    </tr>
+                    <tr>
+                      <td>System (Average no. of people):</td>
+                      <td>{{ emigration_info.sys_avgpeople }}</td>
+                    </tr>
+                    <tr>
+                      <td>System (Waiting Time):</td>
+                      <td>{{ emigration_info.sys_waitingtime }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
           <div class="col-sm-4">
-            <div class="well">
-              <h2>Security Checkpoint</h2>
-              <p>Utilizaition Rate: {{ security_info.uti_rate }}</p>
-              <p>Queue (Average no. of people): {{ security_info.queue_avgpeople }}</p>
-              <p>Queue (Waiting Time): {{ security_info.queue_waitingtime }}</p>
-              <p>System (Average no. of people): {{ security_info.sys_avgpeople }}</p>
-              <p>System (Waiting Time): {{ security_info.sys_waitingtime }}</p>
+            <div class="panel panel-security">
+              <div class="panel-heading"><h2>Security Checkpoint</h2></div>
+              <div class="panel-body">       
+                <table class="table table-hover">
+                  <tbody>
+                    <tr>
+                      <td>Utilization Rate:</td>
+                      <td>{{ security_info.uti_rate }}</td>
+                    </tr>
+                    <tr>
+                      <td>Queue (Average no. of people):</td>
+                      <td>{{ security_info.queue_avgpeople }}</td>
+                    </tr>
+                    <tr>
+                      <td>Queue (Waiting Time):</td>
+                      <td>{{ security_info.queue_waitingtime }}</td>
+                    </tr>
+                    <tr>
+                      <td>System (Average no. of people):</td>
+                      <td>{{ security_info.sys_avgpeople }}</td>
+                    </tr>
+                    <tr>
+                      <td>System (Waiting Time):</td>
+                      <td>{{ security_info.sys_waitingtime }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
-          </div>
-        </div>
-<!--         <div class="row">
-          <div class="col-sm-4">
-            <div class="well">
-              <h2>Process</h2>
-              <p>insert graph here</p> 
-            </div>
-          </div>
-          <div class="col-sm-4">
-            <div class="well">
-              <h2>Process</h2>
-              <p>insert graph here</p> 
-            </div>
-          </div>
-          <div class="col-sm-4">
-            <div class="well">
-              <h2>Process</h2>
-              <p>insert graph here</p> 
-            </div>
-          </div>
-        </div> -->
-        <div class="row">
-          <div class="viewall">
-            <a href="#viewall">view all processes</a>
           </div>
         </div>
         <div class="row">
           <div class="col-sm-6">
-            <div class="well">
-              <h2>Benchmarking (yearly score)</h2>
-              <p>insert graph here</p> 
+            <div class="panel panel-benchmarking">
+              <div class="panel-heading"><h2>Benchmarking (Yearly Score)</h2></div>
+              <div class="panel-body">  
+                <p> Under maintenance. </p>
+              </div>
             </div>
           </div>
           <div class="col-sm-6">
-            <div class="well">
-              <h2>Benchmarking (similar size)</h2>
-              <p>insert graph here</p> 
+            <div class="panel panel-benchmarking">
+              <div class="panel-heading"><h2>Benchmarking (Similar size)</h2></div>
+              <div class="panel-body">  
+                <p> Under maintenance. </p>
+              </div>
             </div>
           </div>
         </div>

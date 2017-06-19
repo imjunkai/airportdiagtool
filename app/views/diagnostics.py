@@ -4,6 +4,7 @@ from app import app
 from flask_login import login_required
 from app.models import Airport, Check_in, Emigration, Security_checkpoint
 import datetime
+import random
 
 mod = Blueprint('diagnostics', __name__, url_prefix='/diagnostics')
 
@@ -45,7 +46,8 @@ def diagnostics(airport_code, diag_time):
                             current_Time = current_Time,
                             checkin_info = checkin_info,
                             emigration_info = emigration_info,
-                            security_info = security_info)
+                            security_info = security_info,
+                            score = random.randrange(70, 95))
 
 # Get time of diagnosis for a certain airport
 def get_diagTimes(airport_code):

@@ -1,16 +1,19 @@
 /* Dropdown Button */
 .dropbtn {
-    background-color: #4CAF50;
+    background-color: #957F68;
     color: white;
     padding: 16px;
-    font-size: 16px;
-    border: none;
+    font-size: 25px;
     cursor: pointer;
+    height: 90px;
+    width: 200px;
+    border: 2px solid;
+    border-radius: 6px;
 }
 
 /* Dropdown button on hover & focus */
 .dropbtn:hover, .dropbtn:focus {
-    background-color: #3e8e41;
+    background-color: #7d6a55;
 }
 
 /* The container <div> - needed to position the dropdown content */
@@ -24,7 +27,8 @@
     display: none;
     position: absolute;
     background-color: #f9f9f9;
-    min-width: 160px;
+    min-width: 200px;
+    font-size: 15px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
 }
@@ -42,3 +46,51 @@
 
 /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
 .show {display:block;}
+
+.airport-info{
+    font-size: 16px;
+}
+
+.top {
+    background-color: white;
+    border-bottom-color:  #B1A99D;
+    border-right-color:  #B1A99D;
+}
+
+.panel {
+    color: white;
+}
+
+.panel-score{
+    border-color:  #8b6f47;
+    text-align: center;
+    font-size: 50px;
+    padding: 8px;
+    background-color: #957F68;
+}
+
+.panel-body{
+    font-size: 16px;
+    color: black;
+    background-color: #FFFFFF;
+}
+
+.panel-checkin{
+    border-color:  #8b6f47;
+    background-color: #8b6f47;
+}
+
+.panel-emigration{
+    border-color:  #8b6f47;
+    background-color: #8b6f47;
+}
+
+.panel-security{
+    border-color:  #8b6f47;
+    background-color: #8b6f47;
+}
+
+.panel-benchmarking{
+    border-color:  #6F2D53;
+    background-color: #6F2D53;
+}

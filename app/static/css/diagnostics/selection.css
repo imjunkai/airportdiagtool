@@ -1,10 +1,12 @@
 .dropbtn {
-    background-color: #4CAF50;
+    background-color: #7d6a55;
     color: white;
     padding: 16px;
-    font-size: 16px;
+    font-size: 18px;
     border: none;
     cursor: pointer;
+    height: 150px;
+    width: 300px;
 }
 
 .dropdown {
@@ -15,9 +17,10 @@
 
 .dropdown-content {
     display: none;
+    font-size: 16px;
     position: absolute;
     background-color: #f9f9f9;
-    min-width: 160px;
+    min-width: 200px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
 }
@@ -36,5 +39,5 @@
 }
 
 .dropdown:hover .dropbtn {
-    background-color: #3e8e41;
+    background-color: #f58220;
 }

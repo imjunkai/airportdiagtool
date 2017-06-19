@@ -19,8 +19,10 @@ from app.views import main
 from app.views import benchmarking
 from app.views import diagnostics
 from app.views import authentication
+from app.views import metrics
 
 app.register_blueprint(main.mod)
 app.register_blueprint(benchmarking.mod)
 app.register_blueprint(diagnostics.mod)
 app.register_blueprint(authentication.mod)
+app.register_blueprint(metrics.mod)
