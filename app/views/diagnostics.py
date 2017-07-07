@@ -19,8 +19,8 @@ def selection():
     airport_info = Airport.query.all()
     airports = []
     for airport in airport_info:
-        if get_diagTimes(airport) != []:     # Remove airports without any diagnostics performed
-            airports.append([airport, airport.name , get_diagTimes(airport)])
+        if get_diagTimes(airport.iata_code) != []:     # Remove airports without any diagnostics performed
+            airports.append([airport, airport.name , get_diagTimes(airport.iata_code)])
     # print (airports)
     return render_template("diagnostics/selection.html",
                             title = 'Selection',
