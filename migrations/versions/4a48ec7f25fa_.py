@@ -1,13 +1,13 @@
 """empty message
 
-Revision ID: 7642c35572cf
+Revision ID: 4a48ec7f25fa
 Revises: None
-Create Date: 2017-07-07 01:07:50.366697
+Create Date: 2017-07-14 10:31:10.375698
 
 """
 
 # revision identifiers, used by Alembic.
-revision = '7642c35572cf'
+revision = '4a48ec7f25fa'
 down_revision = None
 
 from alembic import op
@@ -24,6 +24,12 @@ def upgrade():
     sa.Column('country', sa.String(length=45), nullable=False),
     sa.Column('size', sa.String(length=10), nullable=False),
     sa.PrimaryKeyConstraint('iata_code')
+    )
+    op.create_table('iata_los',
+    sa.Column('process', sa.String(length=45), nullable=False),
+    sa.Column('overdesign_UB', sa.Float(), nullable=False),
+    sa.Column('suboptimum_LB', sa.Float(), nullable=False),
+    sa.PrimaryKeyConstraint('process')
     )
     op.create_table('user',
     sa.Column('username', sa.String(length=16), nullable=False),
@@ -72,5 +78,6 @@ def downgrade():
     op.drop_table('emigration')
     op.drop_table('check_in')
     op.drop_table('user')
+    op.drop_table('iata_los')
     op.drop_table('airport')
     # ### end Alembic commands ###

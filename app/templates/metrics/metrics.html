@@ -1,12 +1,145 @@
 {% extends "base.html" %}
 
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename="css/metrics/metrics.css") }}">
+<script type="text/javascript" src="{{ url_for('static', filename="js/metrics/metrics.js") }}"></script>
+{% endblock %}
+
 {% block content %}
 
     <div class="col-sm-10">
       <div class="container-fluid">
-        <div class="jumbotron">
-          <h1 class='bighead'>Metrics</h1>
-          <p>Under maintenance. </p>
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="panel panel-checkin">
+              <div class="panel-heading"><h2>Check-in</h2></div>
+              <div class="panel-body panel-body-processes">
+                <table class="table table-hover">
+                  <tbody>
+                    <tr>
+                        <td>Weight:</td>
+                        <td colspan="2" style="text-align: center;">{{ checkin_info.weight }}</td>
+                    </tr>
+                    <tr> 
+                        <td rowspan="3" style="vertical-align: middle;">Points assigned to</td>
+                        <th>Over-design:</th> 
+                        <td>{{ checkin_info.p_overdesign }}</td> 
+                    </tr> 
+                    <tr> 
+                        <th>Optimum:</th> 
+                        <td>{{ checkin_info.p_optimum }}</td> 
+                    </tr>
+                    <tr>
+                        <th>Suboptimum:</th>
+                        <td>{{ checkin_info.p_suboptimum }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="panel panel-emigration">
+              <div class="panel-heading"><h2>Emigration</h2></div>
+              <div class="panel-body panel-body-processes"> 
+                <table class="table table-hover">
+                  <tbody>
+                    <tr>
+                        <td>Weight:</td>
+                        <td colspan="2" style="text-align: center;">{{ emigration_info.weight }}</td>
+                    </tr>
+                    <tr> 
+                        <td rowspan="3" style="vertical-align: middle;">Points assigned to</td>
+                        <th>Over-design:</th> 
+                        <td>{{ emigration_info.p_overdesign }}</td> 
+                    </tr> 
+                    <tr> 
+                        <th>Optimum:</th> 
+                        <td>{{ emigration_info.p_optimum }}</td> 
+                    </tr>
+                    <tr>
+                        <th>Suboptimum:</th>
+                        <td>{{ emigration_info.p_suboptimum }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="panel panel-security">
+              <div class="panel-heading"><h2>Security Checkpoint</h2></div>
+              <div class="panel-body panel-body-processes">       
+                <table class="table table-hover">
+                  <tbody>
+                    <tr>
+                        <td>Weight:</td>
+                        <td colspan="2" style="text-align: center;">{{ security_info.weight }}</td>
+                    </tr>
+                    <tr> 
+                        <td rowspan="3" style="vertical-align: middle;">Points assigned to</td>
+                        <th>Over-design:</th> 
+                        <td>{{ security_info.p_overdesign }}</td> 
+                    </tr> 
+                    <tr> 
+                        <th>Optimum:</th> 
+                        <td>{{ security_info.p_optimum }}</td> 
+                    </tr>
+                    <tr>
+                        <th>Suboptimum:</th>
+                        <td>{{ security_info.p_suboptimum }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-8">
+            <div class="panel panel-formulation">
+              <div class="panel-heading"><h2>Grade Formulation</h2></div>
+              <div class="panel-body panel-body-formulation">  
+                <div class="col-sm-4">
+                    <table class="table table-hover table-formulation">
+                      <tbody>
+                        <th>Grade</th>
+                        <th>Overall score</th>
+                        <tr>
+                          <td>A</td>
+                          <td>2.01 - 3</td>
+                        </tr>
+                        <tr>
+                          <td>B</td>
+                          <td>1.01 - 2</td>
+                        </tr>
+                        <tr>
+                          <td>C</td>
+                          <td>0 - 1</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                </div>
+                <div class="col-sm-8 formulas">
+                    <table class="table table-condensed">
+                        <tr>
+                            <td>Individual Process Score</td>
+                            <td>=</td>
+                            <td>Weight of process X Points given to process</td>
+                        </tr>
+                        <tr>
+                            <td style="vertical-align: middle;">Total Score</td>
+                            <td style="vertical-align: middle;">=</td>
+                            <td style="vertical-align: middle;"><span class="inlineformula"><table class="frac"><tr><td><br>Sum of Individual Process Scores<br>&#x2013;&#x2013;&#x2013;&#x2013;&#x2013;&#x2013;&#x2013;&#x2013;&#x2013;&#x2013;&#x2013;&#x2013;&#x2013;&#x2013;&#x2013;&#x2013;&#x2013;&#x2013;&#x2013;&#x2013;&#x2013;&#x2013;&#x2013;&#x2013;&#x2013;&#x2013;&#x2013;<br>Sum of all processes' weights</table>&nbsp;</span></td>
+                        </tr>
+                    </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            [Edit weights] button will be placed here
+          </div>
         </div>
       </div>
     </div>

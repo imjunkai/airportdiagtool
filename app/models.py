@@ -135,3 +135,30 @@ class Security_checkpoint(db.Model):
 		'sys_avgpeople': self.sys_avgpeople,
 		'sys_waitingtime': self.sys_waitingtime,
 		}
+
+class Iata_los(db.Model):
+	process = db.Column(db.String(45), primary_key=True)
+	overdesign_UB  = db.Column(db.Float, nullable=False)
+	suboptimum_LB = db.Column(db.Float, nullable=False)
+
+	def __init__(self,**kwargs):
+		self.process = kwargs['process']
+		self.overdesign_UB = kwargs['overdesign_UB']
+		self.suboptimum_LB = kwargs['suboptimum_LB']
+
+	def __repr__(self):
+		return '%s, %s' % (self.overdesign_UB, self.suboptimum_LB)
+
+class Metric(db.Model):
+	process = db.Column(db.String(45), primary_key=True)
+	weight = db.Column(db.Float, nullable=False)
+	p_overdesign = db.Column(db.Float, nullable=False)
+	p_optimum = db.Column(db.Float, nullable=False)
+	p_suboptimum = db.Column(db.Float, nullable=False)
+
+	def __init__(self,**kwargs):
+		self.process = kwargs['process']
+		self.weight = kwargs['weight']
+		self.p_overdesign = kwargs['p_overdesign']
+		self.p_optimum = kwargs['p_optimum']
+		self.p_suboptimum = kwargs['p_suboptimum']

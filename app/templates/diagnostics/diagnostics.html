@@ -39,7 +39,7 @@
           </div>
           <div class="col-sm-2">
             <div class="panel panel-score">
-                {{ score }}%
+                {{ score }}
               </div>
             </div>
           </div>
@@ -72,6 +72,10 @@
                       <td>System (Waiting Time):</td>
                       <td>{{ checkin_info.sys_waitingtime }}</td>
                     </tr>
+                    <tr>
+                      <td>IATA LoS Grade:</td>
+                      <td>{{ checkin_grade }}</td>
+                    </tr>
                   </tbody>
                 </table>
               </div>
@@ -103,6 +107,10 @@
                       <td>System (Waiting Time):</td>
                       <td>{{ emigration_info.sys_waitingtime }}</td>
                     </tr>
+                    <tr>
+                      <td>IATA LoS Grade:</td>
+                      <td>{{ emigration_grade }}</td>
+                    </tr>
                   </tbody>
                 </table>
               </div>
@@ -133,6 +141,10 @@
                     <tr>
                       <td>System (Waiting Time):</td>
                       <td>{{ security_info.sys_waitingtime }}</td>
+                    </tr>
+                    <tr>
+                      <td>IATA LoS Grade:</td>
+                      <td>{{ security_grade }}</td>
                     </tr>
                   </tbody>
                 </table>
