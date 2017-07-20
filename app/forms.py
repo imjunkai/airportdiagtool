@@ -38,3 +38,8 @@ class CompareForm(FlaskForm):
     #     print (airport.name,get_diagTimes(airport.iata_code))
     #     setattr(FlaskForm, airport.name, SelectMultipleField(airport.name, choices=[('a', get_diagTimes(airport.iata_code))]))
 
+# for airport in airports:
+#     airport_info = Airport.query.all()
+#     for airport in airport_info:
+#         if get_diagTimes(airport.iata_code) != []:
+#             airports.append([airport])

@@ -1,0 +1,260 @@
+{% extends "base.html" %}
+
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename="css/benchmarking/benchmarking.css") }}">
+<script type="text/javascript" src="{{ url_for('static', filename="js/benchmarking/benchmarking.js") }}"></script>
+{% endblock %}
+
+{% block content %}
+    
+    <div class="col-sm-10">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="panel panel-benchmarking">
+              <div class="panel-heading"><h2>General Information</h2></div>
+              <div class="panel-body">
+                <table class="table table-hover">
+                  <tbody>
+                    <tr>
+                      <td></td>
+                      {% for i in airports_info %}
+                        <td>{{ airports_info[i]['information'].name }}</td>
+                      {% endfor %}
+                    </tr>
+                    <tr>
+                      <td>Diagnostic date:</td>
+                      {% for i in airports_info %}
+                        <td>{{ airports_info[i]['diag_time'].strftime('%B %d, 
+                %Y') }}</td>
+                      {% endfor %}
+                    </tr>                    
+                    <tr>
+                      <td>IATA:</td>
+                      {% for i in airports_info %}
+                        <td>{{ airports_info[i]['information'].iata_code }}</td>
+                      {% endfor %}
+                    </tr>
+                    <tr>
+                      <td>ICAO:</td>
+                      {% for i in airports_info %}
+                        <td>{{ airports_info[i]['information'].icao_code }}</td>
+                      {% endfor %}
+                    </tr>
+                    <tr>
+                      <td>City:</td>
+                      {% for i in airports_info %}
+                        <td>{{ airports_info[i]['information'].city }}</td>
+                      {% endfor %}
+                    </tr>
+                    <tr>
+                      <td>Country:</td>
+                      {% for i in airports_info %}
+                        <td>{{ airports_info[i]['information'].country }}</td>
+                      {% endfor %}
+                    </tr>
+                    <tr>
+                      <td>Size:</td>
+                      {% for i in airports_info %}
+                        <td>{{ airports_info[i]['information'].size }}</td>
+                      {% endfor %}
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="panel panel-checkin">
+              <div class="panel-heading"><h2>Check-in</h2></div>
+              <div class="panel-body">
+                <table class="table table-hover">
+                  <tbody>
+                    <tr>
+                      <td></td>
+                      {% for i in airports_info %}
+                        <td>{{ airports_info[i]['information'].name }}</td>
+                      {% endfor %}
+                    </tr>
+                    <tr>
+                      <td>Diagnostic date:</td>
+                      {% for i in airports_info %}
+                        <td>{{ airports_info[i]['diag_time'].strftime('%B %d, 
+                %Y') }}</td>
+                      {% endfor %}
+                    </tr>  
+                    <tr>
+                      <td>Utilization Rate:</td>
+                      {% for i in airports_info %}
+                        <td>{{ airports_info[i]['checkin'].uti_rate }}</td>
+                      {% endfor %}
+                    </tr>
+                    <tr>
+                      <td>Queue (Average no. of people):</td>
+                      {% for i in airports_info %}
+                        <td>{{ airports_info[i]['checkin'].queue_avgpeople }}</td>
+                      {% endfor %}
+                    </tr>
+                    <tr>
+                      <td>Queue (Waiting Time):</td>
+                      {% for i in airports_info %}
+                        <td>{{ airports_info[i]['checkin'].queue_waitingtime }}</td>
+                      {% endfor %}
+                    </tr>
+                    <tr>
+                      <td>System (Average no. of people):</td>
+                      {% for i in airports_info %}
+                        <td>{{ airports_info[i]['checkin'].sys_avgpeople }}</td>
+                      {% endfor %}
+                    </tr>
+                    <tr>
+                      <td>System (Waiting Time):</td>
+                      {% for i in airports_info %}
+                        <td>{{ airports_info[i]['checkin'].sys_waitingtime }}</td>
+                      {% endfor %}
+                    </tr>
+                    <tr>
+                      <td>IATA LoS Grade:</td>
+                      {% for i in airports_info %}
+                        <td>BLABLABLA FOR NOW LA</td>
+                      {% endfor %}
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="panel panel-checkin">
+              <div class="panel-heading"><h2>Emigration</h2></div>
+              <div class="panel-body">
+                <table class="table table-hover">
+                  <tbody>
+                    <tr>
+                      <td></td>
+                      {% for i in airports_info %}
+                        <td>{{ airports_info[i]['information'].name }}</td>
+                      {% endfor %}
+                    </tr>
+                    <tr>
+                      <td>Diagnostic date:</td>
+                      {% for i in airports_info %}
+                        <td>{{ airports_info[i]['diag_time'].strftime('%B %d, 
+                %Y') }}</td>
+                      {% endfor %}
+                    </tr>  
+                    <tr>
+                      <td>Utilization Rate:</td>
+                      {% for i in airports_info %}
+                        <td>{{ airports_info[i]['emigration'].uti_rate }}</td>
+                      {% endfor %}
+                    </tr>
+                    <tr>
+                      <td>Queue (Average no. of people):</td>
+                      {% for i in airports_info %}
+                        <td>{{ airports_info[i]['emigration'].queue_avgpeople }}</td>
+                      {% endfor %}
+                    </tr>
+                    <tr>
+                      <td>Queue (Waiting Time):</td>
+                      {% for i in airports_info %}
+                        <td>{{ airports_info[i]['emigration'].queue_waitingtime }}</td>
+                      {% endfor %}
+                    </tr>
+                    <tr>
+                      <td>System (Average no. of people):</td>
+                      {% for i in airports_info %}
+                        <td>{{ airports_info[i]['emigration'].sys_avgpeople }}</td>
+                      {% endfor %}
+                    </tr>
+                    <tr>
+                      <td>System (Waiting Time):</td>
+                      {% for i in airports_info %}
+                        <td>{{ airports_info[i]['emigration'].sys_waitingtime }}</td>
+                      {% endfor %}
+                    </tr>
+                    <tr>
+                      <td>IATA LoS Grade:</td>
+                      {% for i in airports_info %}
+                        <td>BLABLABLA FOR NOW LA</td>
+                      {% endfor %}
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="panel panel-checkin">
+              <div class="panel-heading"><h2>Security Checkpoint</h2></div>
+              <div class="panel-body">
+                <table class="table table-hover">
+                  <tbody>
+                    <tr>
+                      <td></td>
+                      {% for i in airports_info %}
+                        <td>{{ airports_info[i]['information'].name }}</td>
+                      {% endfor %}
+                    </tr>
+                    <tr>
+                      <td>Diagnostic date:</td>
+                      {% for i in airports_info %}
+                        <td>{{ airports_info[i]['diag_time'].strftime('%B %d, 
+                %Y') }}</td>
+                      {% endfor %}
+                    </tr>  
+                    <tr>
+                      <td>Utilization Rate:</td>
+                      {% for i in airports_info %}
+                        <td>{{ airports_info[i]['security'].uti_rate }}</td>
+                      {% endfor %}
+                    </tr>
+                    <tr>
+                      <td>Queue (Average no. of people):</td>
+                      {% for i in airports_info %}
+                        <td>{{ airports_info[i]['security'].queue_avgpeople }}</td>
+                      {% endfor %}
+                    </tr>
+                    <tr>
+                      <td>Queue (Waiting Time):</td>
+                      {% for i in airports_info %}
+                        <td>{{ airports_info[i]['security'].queue_waitingtime }}</td>
+                      {% endfor %}
+                    </tr>
+                    <tr>
+                      <td>System (Average no. of people):</td>
+                      {% for i in airports_info %}
+                        <td>{{ airports_info[i]['security'].sys_avgpeople }}</td>
+                      {% endfor %}
+                    </tr>
+                    <tr>
+                      <td>System (Waiting Time):</td>
+                      {% for i in airports_info %}
+                        <td>{{ airports_info[i]['security'].sys_waitingtime }}</td>
+                      {% endfor %}
+                    </tr>
+                    <tr>
+                      <td>IATA LoS Grade:</td>
+                      {% for i in airports_info %}
+                        <td>BLABLABLA FOR NOW LA</td>
+                      {% endfor %}
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
+{% endblock %}

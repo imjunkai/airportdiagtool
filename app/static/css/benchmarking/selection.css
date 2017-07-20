@@ -15,6 +15,10 @@
     margin: 10px;
 }
 
+label {
+    font-weight: normal;
+}
+
 .dropdown-content {
     display: none;
     font-size: 16px;
