@@ -12,11 +12,17 @@ def index():
     checkin_info = Metric.query.get("check_in")
     emigration_info = Metric.query.get("emigration")
     security_info = Metric.query.get("security_checkpoint")
+    space_checkin_info = Metric.query.get("space_check_in")
+    space_emigration_info = Metric.query.get("space_emigration")
+    space_security_info = Metric.query.get("space_security_checkpoint")
     return render_template("metrics/metrics.html",
                             title='Metrics',
                             checkin_info = checkin_info,
                             emigration_info = emigration_info,
-                            security_info = security_info)
+                            security_info = security_info,
+                            space_checkin_info = space_checkin_info,
+                            space_emigration_info = space_emigration_info,
+                            space_security_info = space_security_info)
 
 @mod.route('/editweights', methods=['GET', 'POST'])
 @login_required
@@ -24,6 +30,10 @@ def editweights():
     checkin_info = Metric.query.get("check_in")
     emigration_info = Metric.query.get("emigration")
     security_info = Metric.query.get("security_checkpoint")
+    space_checkin_info = Metric.query.get("space_check_in")
+    space_emigration_info = Metric.query.get("space_emigration")
+    space_security_info = Metric.query.get("space_security_checkpoint")
+
     form = EditWeights()
 
     if request.method == 'POST' and form.validate():
@@ -42,6 +52,21 @@ def editweights():
         db_security.p_overdesign = form.security_p_overdesign.data
         db_security.p_optimum = form.security_p_optimum.data
         db_security.p_suboptimum = form.security_p_suboptimum.data
+        db_space_checkin = Metric.query.filter(Metric.process == "space_check_in").one()
+        db_space_checkin.weight = form.space_checkin_weight.data
+        db_space_checkin.p_overdesign = form.space_checkin_p_overdesign.data
+        db_space_checkin.p_optimum = form.space_checkin_p_optimum.data
+        db_space_checkin.p_suboptimum = form.space_checkin_p_suboptimum.data
+        db_space_emigration = Metric.query.filter(Metric.process == "space_emigration").one()
+        db_space_emigration.weight = form.space_emigration_weight.data
+        db_space_emigration.p_overdesign = form.space_emigration_p_overdesign.data
+        db_space_emigration.p_optimum = form.space_emigration_p_optimum.data
+        db_space_emigration.p_suboptimum = form.space_emigration_p_suboptimum.data
+        db_space_security = Metric.query.filter(Metric.process == "space_security_checkpoint").one()
+        db_space_security.weight = form.space_security_weight.data
+        db_space_security.p_overdesign = form.space_security_p_overdesign.data
+        db_space_security.p_optimum = form.space_security_p_optimum.data
+        db_space_security.p_suboptimum = form.space_security_p_suboptimum.data
         db.session.commit()
         return redirect(url_for('metrics.index'))
     else:
@@ -51,4 +76,7 @@ def editweights():
                             checkin_info = checkin_info,
                             emigration_info = emigration_info,
                             security_info = security_info,
+                            space_checkin_info = space_checkin_info,
+                            space_emigration_info = space_emigration_info,
+                            space_security_info = space_security_info,
                             form = form)

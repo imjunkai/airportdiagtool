@@ -46,3 +46,11 @@
     float: right;
     align-items: center;
 }
+
+.center {
+    width: 500px;
+}
+
+.table tbody {
+    font-size: 18px;
+}

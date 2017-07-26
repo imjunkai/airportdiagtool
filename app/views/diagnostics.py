@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, redirect, flash, url_for, request
 from app import app, db
 from flask_login import login_required
 from app.models import Airport, Check_in, Emigration, Security_checkpoint, Iata_los, Metric
-from app.forms import AddArea
+from app.forms import AddArea, AddAirport
 import datetime
 import random
 
@@ -26,6 +26,46 @@ def selection():
                             title = 'Selection',
                             airports = airports)
 
+@mod.route('/addairport',methods=['POST','GET'])
+@login_required
+def addairport():
+    form = AddAirport()
+    if request.method == 'POST' and form.validate():
+        newAirport = Airport(
+            iata_code = form.new_iata_code.data,
+            icao_code = form.new_icao_code.data,
+            name = form.new_name.data,
+            city = form.new_city.data,
+            country = form.new_country.data,
+            size = form.new_size.data)
+        # print (newAirport)
+        db.session.add(newAirport)
+        db.session.commit()
+        return redirect(url_for('diagnostics.selection'))
+    return render_template("diagnostics/addairport.html",
+                            title = 'Add Airport',
+                            form = form)
+
+@mod.route('/adddiagnostics',methods=['POST','GET'])
+@login_required
+def adddiagnostics():
+    form = AddAirport()
+    if request.method == 'POST' and form.validate():
+        newAirport = Airport(
+            iata_code = form.new_iata_code.data,
+            icao_code = form.new_icao_code.data,
+            name = form.new_name.data,
+            city = form.new_city.data,
+            country = form.new_country.data,
+            size = form.new_size.data)
+        # print (newAirport)
+        db.session.add(newAirport)
+        db.session.commit()
+        return redirect(url_for('diagnostics.selection'))
+    return render_template("diagnostics/adddiagnostics.html",
+                            title = 'Add Diagnostics',
+                            form = form)
+
 @mod.route('/<airport_code>/<diag_time>/')
 @login_required
 def diagnostics(airport_code, diag_time):
@@ -41,7 +81,7 @@ def diagnostics(airport_code, diag_time):
     checkin_grade_space = get_grade_space('check_in',checkin_info.avgwaitingarea_space)
     emigration_grade_space = get_grade_space('emigration',emigration_info.avgwaitingarea_space)
     security_grade_space = get_grade_space('security_checkpoint',security_info.avgwaitingarea_space)
-    score = overall_grade(checkin_grade,emigration_grade,security_grade)
+    score = overall_grade(checkin_grade,emigration_grade,security_grade,checkin_grade_space,emigration_grade_space,security_grade_space)
     input_link = request.path + "addarea"
     return render_template("diagnostics/diagnostics.html", 
                             title = "Diagnostics for "+ airport_code, 
@@ -74,7 +114,10 @@ def addarea(airport_code, diag_time):
     checkin_grade = get_grade('check_in',checkin_info.sys_waitingtime)
     emigration_grade = get_grade('emigration',emigration_info.sys_waitingtime)
     security_grade = get_grade('security_checkpoint',security_info.sys_waitingtime)
-    score = overall_grade(checkin_grade,emigration_grade,security_grade)
+    checkin_grade_space = get_grade_space('check_in',checkin_info.avgwaitingarea_space)
+    emigration_grade_space = get_grade_space('emigration',emigration_info.avgwaitingarea_space)
+    security_grade_space = get_grade_space('security_checkpoint',security_info.avgwaitingarea_space)
+    score = overall_grade(checkin_grade,emigration_grade,security_grade,checkin_grade_space,emigration_grade_space,security_grade_space)
     form = AddArea()
     if request.method == 'POST' and form.validate():
         checkin_info.waitingarea_length = form.checkin_length.data
@@ -129,17 +172,26 @@ def get_grade(process,value):
 def get_grade_space(process,area):
     space_OD_LB = Iata_los.query.get(process).space_overdesign_LB
     space_OD_UB = Iata_los.query.get(process).space_suboptimum_UB
-    if area < space_OD_UB: 
+    if area > 0 and area < space_OD_UB: 
         result = 'Suboptimum'
     elif area > space_OD_LB:
         result = 'Over-design'
-    else:
+    elif area > space_OD_UB and area < space_OD_LB:
         result = 'Optimum'
+    else:
+        result = None
     return result
 
-def overall_grade(checkin_grade, emigration_grade, security_grade):
-    score = 1/3*(process_point("check_in",checkin_grade)+process_point("emigration",emigration_grade)+process_point("security_checkpoint",security_grade))
-    print (score)
+def overall_grade(checkin_grade, emigration_grade, security_grade,checkin_grade_space,emigration_grade_space,security_grade_space):
+    print(checkin_grade,emigration_grade,security_grade,checkin_grade_space,emigration_grade_space,security_grade_space)
+    top = process_point("check_in",checkin_grade)[0]*process_point("check_in",checkin_grade)[1] + process_point("emigration",emigration_grade)[0]*process_point("emigration",emigration_grade)[1] + process_point("security_checkpoint",security_grade)[0]*process_point("security_checkpoint",security_grade)[1] + process_point("space_check_in",checkin_grade_space)[0]*process_point("space_check_in",checkin_grade_space)[1] + process_point("space_emigration",emigration_grade_space)[0]*process_point("space_emigration",emigration_grade_space)[1] + process_point("space_security_checkpoint",security_grade_space)[0]*process_point("space_security_checkpoint",security_grade_space)[1]
+    if checkin_grade_space == None and emigration_grade_space == None and security_grade_space == None:
+        bottom = process_point("check_in",checkin_grade)[0] + process_point("emigration",emigration_grade)[0] + process_point("security_checkpoint",security_grade)[0]
+    else:
+        bottom = process_point("check_in",checkin_grade)[0] + process_point("emigration",emigration_grade)[0] + process_point("security_checkpoint",security_grade)[0] + process_point("space_check_in",checkin_grade_space)[0] + process_point("space_emigration",emigration_grade_space)[0] + process_point("space_security_checkpoint",security_grade_space)[0]
+    score = top/bottom
+    print ("Score is")
+    print (score, top,bottom)
     if score >2.5:
         grade = ["A","Over-design"]
     elif score>2 and score <=2.5:
@@ -159,5 +211,6 @@ def process_point(process,grade):
         points = metrics.p_optimum
     elif grade == "Suboptimum":
         points = metrics.p_suboptimum
-    return weight*points
-
+    else:
+        points = 0
+    return [weight,points]

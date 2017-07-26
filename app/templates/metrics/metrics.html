@@ -96,6 +96,92 @@
           </div>
         </div>
         <div class="row">
+          <div class="col-sm-4">
+            <div class="panel panel-checkin">
+              <div class="panel-heading"><h2>Check-in (Space)</h2></div>
+              <div class="panel-body panel-body-processes">
+                <table class="table table-hover">
+                  <tbody>
+                    <tr>
+                        <td>Weight:</td>
+                        <td colspan="2" style="text-align: center;">{{ space_checkin_info.weight }}</td>
+                    </tr>
+                    <tr> 
+                        <td rowspan="3" style="vertical-align: middle;">Points assigned to</td>
+                        <th>Over-design:</th> 
+                        <td>{{ space_checkin_info.p_overdesign }}</td> 
+                    </tr> 
+                    <tr> 
+                        <th>Optimum:</th> 
+                        <td>{{ space_checkin_info.p_optimum }}</td> 
+                    </tr>
+                    <tr>
+                        <th>Suboptimum:</th>
+                        <td>{{ space_checkin_info.p_suboptimum }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="panel panel-emigration">
+              <div class="panel-heading"><h2>Emigration (Space)</h2></div>
+              <div class="panel-body panel-body-processes"> 
+                <table class="table table-hover">
+                  <tbody>
+                    <tr>
+                        <td>Weight:</td>
+                        <td colspan="2" style="text-align: center;">{{ space_emigration_info.weight }}</td>
+                    </tr>
+                    <tr> 
+                        <td rowspan="3" style="vertical-align: middle;">Points assigned to</td>
+                        <th>Over-design:</th> 
+                        <td>{{ space_emigration_info.p_overdesign }}</td> 
+                    </tr> 
+                    <tr> 
+                        <th>Optimum:</th> 
+                        <td>{{ space_emigration_info.p_optimum }}</td> 
+                    </tr>
+                    <tr>
+                        <th>Suboptimum:</th>
+                        <td>{{ space_emigration_info.p_suboptimum }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="panel panel-security">
+              <div class="panel-heading"><h2>Security Checkpoint (Space)</h2></div>
+              <div class="panel-body panel-body-processes">       
+                <table class="table table-hover">
+                  <tbody>
+                    <tr>
+                        <td>Weight:</td>
+                        <td colspan="2" style="text-align: center;">{{ space_security_info.weight }}</td>
+                    </tr>
+                    <tr> 
+                        <td rowspan="3" style="vertical-align: middle;">Points assigned to</td>
+                        <th>Over-design:</th> 
+                        <td>{{ space_security_info.p_overdesign }}</td> 
+                    </tr> 
+                    <tr> 
+                        <th>Optimum:</th> 
+                        <td>{{ space_security_info.p_optimum }}</td> 
+                    </tr>
+                    <tr>
+                        <th>Suboptimum:</th>
+                        <td>{{ space_security_info.p_suboptimum }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
           <div class="col-sm-8">
             <div class="panel panel-formulation">
               <div class="panel-heading"><h2>Grade Formulation</h2></div>
