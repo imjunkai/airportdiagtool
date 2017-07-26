@@ -1,0 +1,135 @@
+{% extends "base.html" %}
+
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename="css/diagnostics/addarea.css") }}">
+<!-- <script type="text/javascript" src="{{ url_for('static', filename="js/diagnostics/diagnostics.js") }}"></script> -->
+{% endblock %}
+
+{% block content %}
+    
+    <div class="col-sm-10">
+      <div class="container-fluid">
+        <div class="row well top">
+          <div class="col-sm-7">
+            <h1>
+              {{ airport_info.name }}, {{ airport_info.iata_code }}
+            </h1>
+            <div class="airport-info">
+              <ul class='list-inline'>
+                <li>IATA: {{ airport_info.iata_code }}</li>
+                <li>ICAO: {{ airport_info.icao_code }}</li>
+                <li>City: {{ airport_info.city }}</li>
+                <li>Country: {{ airport_info.country }}</li>
+                <li>Size: {{ airport_info.size }}</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="dropdown">
+              <button class="dropbtn">{{ current_Time.strftime('%B %d, 
+                %Y') }}</button>
+              <div id="myDropdown" class="dropdown-content">
+                {% for time in diagTime %}
+                <a href="/diagnostics/{{ airport_info.iata_code }}/{{ 
+                time.strftime('%Y-%m-%d')}}">{{ time.strftime('%B %d, 
+                %Y') }}</a>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-2">
+            <div class="panel panel-score">
+                {{ score[0] }}<h5>{{ score[1] }}</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <form action="{{ current_link }}" method="post" name="addarea" class="form-horizontal">          
+
+          <div class="col-sm-4">
+            <div class="panel panel-checkin">
+              <div class="panel-heading"><h2>Check-in</h2></div>
+              <div class="panel-body">
+                <table class="table table-hover">
+                  <tbody>
+                    <tr> 
+                      <td>Length:</td>
+                      <td>
+                        <input type="text" class="form-control" placeholder="Length" name="checkin_length">
+                      </td>
+                    </tr> 
+                    <tr> 
+                      <td>Breadth:</td>
+                      <td>
+                        <input type="text" class="form-control" placeholder="Breadth" name="checkin_breadth">
+                      </td>
+                    </tr> 
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="panel panel-emigration">
+              <div class="panel-heading"><h2>Emigration</h2></div>
+              <div class="panel-body"> 
+                <table class="table table-hover">
+                  <tbody>
+                    <tr> 
+                      <td>Length:</td>
+                      <td>
+                        <input type="text" class="form-control" placeholder="Length" name="emigration_length">
+                      </td>
+                    </tr> 
+                    <tr> 
+                      <td>Breadth:</td>
+                      <td>
+                        <input type="text" class="form-control" placeholder="Breadth" name="emigration_breadth">
+                      </td>
+                    </tr> 
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="panel panel-security">
+              <div class="panel-heading"><h2>Security Checkpoint</h2></div>
+              <div class="panel-body">       
+                <table class="table table-hover">
+                  <tbody>
+                    <tr> 
+                      <td>Length:</td>
+                      <td>
+                        <input type="text" class="form-control" placeholder="Length" name="security_length">
+                      </td>
+                    </tr> 
+                    <tr> 
+                      <td>Breadth:</td>
+                      <td>
+                        <input type="text" class="form-control" placeholder="Breadth" name="security_breadth">
+                      </td>
+                    </tr> 
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-2 col-sm-offset-5 spaceinput">
+              <input class="btn btn-default" type="submit" value="Submit">
+              {{ form.csrf_token }}
+            <a href="{{ previous_link }}" class="btn btn-default">Cancel</a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
+{% endblock %}

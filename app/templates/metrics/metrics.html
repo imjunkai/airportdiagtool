@@ -101,24 +101,36 @@
               <div class="panel-heading"><h2>Grade Formulation</h2></div>
               <div class="panel-body panel-body-formulation">  
                 <div class="col-sm-4">
-                    <table class="table table-hover table-formulation">
-                      <tbody>
-                        <th>Grade</th>
-                        <th>Overall score</th>
-                        <tr>
-                          <td>A</td>
-                          <td>2.01 - 3</td>
-                        </tr>
-                        <tr>
-                          <td>B</td>
-                          <td>1.01 - 2</td>
-                        </tr>
-                        <tr>
-                          <td>C</td>
-                          <td>0 - 1</td>
-                        </tr>
-                      </tbody>
-                    </table>
+                  <table class="table table-hover table-formulation">
+                    <tbody>
+                      <th>Grade</th>
+                      <th>Overall score</th>
+                      <tr>
+                        <td>
+                          A
+                          <br>
+                          <h5>(Over-design)</h5>
+                        </td>
+                        <td style="vertical-align: middle;">2.51 - 3</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          A
+                          <br>
+                          <h5>(Optimum)</h5>
+                        </td>
+                        <td style="vertical-align: middle;">2.01 - 2.5</td>
+                      </tr>
+                      <tr>
+                        <td>B</td>
+                        <td style="vertical-align: middle;">1.01 - 2</td>
+                      </tr>
+                      <tr>
+                        <td>C</td>
+                        <td style="vertical-align: middle;">0 - 1</td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
                 <div class="col-sm-8 formulas">
                     <table class="table table-condensed">
@@ -138,7 +150,8 @@
             </div>
           </div>
           <div class="col-sm-4">
-            [Edit weights] button will be placed here
+          <a href="{{ url_for('metrics.editweights') }}" class="btn btn-default">Edit weights</a>
+
           </div>
         </div>
       </div>

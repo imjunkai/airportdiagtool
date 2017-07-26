@@ -39,11 +39,11 @@
           </div>
           <div class="col-sm-2">
             <div class="panel panel-score">
-                {{ score }}
-              </div>
+                {{ score[0] }}<h5>{{ score[1] }}</h5>
             </div>
           </div>
         </div>
+      </div>
 
         <div class="row">
           <div class="col-sm-4">
@@ -54,7 +54,7 @@
                   <tbody>
                     <tr>
                       <td>Utilization Rate:</td>
-                      <td>{{ checkin_info.uti_rate }}</td>
+                      <td>{{ checkin_info.uti_rate*100 }}%</td>
                     </tr>
                     <tr>
                       <td>Queue (Average no. of people):</td>
@@ -62,7 +62,7 @@
                     </tr>
                     <tr>
                       <td>Queue (Waiting Time):</td>
-                      <td>{{ checkin_info.queue_waitingtime }}</td>
+                      <td>{{ checkin_info.queue_waitingtime }} min</td>
                     </tr>
                     <tr>
                       <td>System (Average no. of people):</td>
@@ -70,12 +70,24 @@
                     </tr>
                     <tr>
                       <td>System (Waiting Time):</td>
-                      <td>{{ checkin_info.sys_waitingtime }}</td>
+                      <td>{{ checkin_info.sys_waitingtime }} min</td>
                     </tr>
                     <tr>
-                      <td>IATA LoS Grade:</td>
+                      <td>Level of Service Grade:</td>
                       <td>{{ checkin_grade }}</td>
                     </tr>
+                    <tr>
+                      <td>Waiting Area Space (per pax):</td>
+                      {% if checkin_info.avgwaitingarea_space == 0: %}
+                        <td style="color: red;">nil</td>
+                      {% else: %}
+                      <td>{{ checkin_info.avgwaitingarea_space }} m2/pax</td>
+                    </tr>
+                    <tr>
+                      <td>Grade:</td>
+                      <td>{{ checkin_grade_space }}</td>
+                    </tr>
+                      {% endif %}
                   </tbody>
                 </table>
               </div>
@@ -89,7 +101,7 @@
                   <tbody>
                     <tr>
                       <td>Utilization Rate:</td>
-                      <td>{{ emigration_info.uti_rate }}</td>
+                      <td>{{ emigration_info.uti_rate*100 }}%</td>
                     </tr>
                     <tr>
                       <td>Queue (Average no. of people):</td>
@@ -97,7 +109,7 @@
                     </tr>
                     <tr>
                       <td>Queue (Waiting Time):</td>
-                      <td>{{ emigration_info.queue_waitingtime }}</td>
+                      <td>{{ emigration_info.queue_waitingtime }} min</td>
                     </tr>
                     <tr>
                       <td>System (Average no. of people):</td>
@@ -105,12 +117,24 @@
                     </tr>
                     <tr>
                       <td>System (Waiting Time):</td>
-                      <td>{{ emigration_info.sys_waitingtime }}</td>
+                      <td>{{ emigration_info.sys_waitingtime }} min</td>
                     </tr>
                     <tr>
-                      <td>IATA LoS Grade:</td>
+                      <td>Level of Service Grade:</td>
                       <td>{{ emigration_grade }}</td>
                     </tr>
+                    <tr>
+                      <td>Waiting Area Space (per pax):</td>
+                      {% if emigration_info.avgwaitingarea_space == 0: %}
+                        <td style="color: red;">nil</td>
+                      {% else: %}
+                      <td>{{ emigration_info.avgwaitingarea_space }} m2/pax</td>
+                    </tr>
+                    <tr>
+                      <td>Grade:</td>
+                      <td>{{ emigration_grade_space }}</td>
+                    </tr>
+                      {% endif %}
                   </tbody>
                 </table>
               </div>
@@ -124,7 +148,7 @@
                   <tbody>
                     <tr>
                       <td>Utilization Rate:</td>
-                      <td>{{ security_info.uti_rate }}</td>
+                      <td>{{ security_info.uti_rate*100 }}%</td>
                     </tr>
                     <tr>
                       <td>Queue (Average no. of people):</td>
@@ -132,7 +156,7 @@
                     </tr>
                     <tr>
                       <td>Queue (Waiting Time):</td>
-                      <td>{{ security_info.queue_waitingtime }}</td>
+                      <td>{{ security_info.queue_waitingtime }} min</td>
                     </tr>
                     <tr>
                       <td>System (Average no. of people):</td>
@@ -140,16 +164,33 @@
                     </tr>
                     <tr>
                       <td>System (Waiting Time):</td>
-                      <td>{{ security_info.sys_waitingtime }}</td>
+                      <td>{{ security_info.sys_waitingtime }} min</td>
                     </tr>
                     <tr>
-                      <td>IATA LoS Grade:</td>
+                      <td>Level of Service Grade:</td>
                       <td>{{ security_grade }}</td>
                     </tr>
+                    <tr>
+                      <td>Waiting Area Space (per pax):</td>
+                      {% if security_info.avgwaitingarea_space == 0: %}
+                        <td style="color: red;">nil</td>
+                      {% else: %}
+                      <td>{{ security_info.avgwaitingarea_space }} m2/pax</td>
+                    </tr>
+                    <tr>
+                      <td>Grade:</td>
+                      <td>{{ security_grade_space }}</td>
+                    </tr>
+                      {% endif %}
                   </tbody>
                 </table>
               </div>
             </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-2 col-sm-offset-5 spaceinput">
+            <a href="{{ input_link }}" class="btn btn-default">Input Waiting Area Space</a><br>
           </div>
         </div>
         <div class="row">
@@ -168,7 +209,6 @@
                 <p> Under maintenance. </p>
               </div>
             </div>
-          </div>
         </div>
       </div>
     </div>

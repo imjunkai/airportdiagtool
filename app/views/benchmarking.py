@@ -1,7 +1,6 @@
 from flask import Blueprint, render_template, redirect, flash, url_for, request, Flask
 from flask_login import login_required
-from app.models import Airport, Check_in, Emigration, Security_checkpoint
-from app.forms import CompareForm
+from app.models import Airport, Check_in, Emigration, Security_checkpoint, Iata_los, Metric
 import datetime
 from collections import OrderedDict
 
@@ -44,7 +43,10 @@ def result():
             airports_info[key]['checkin'] = Check_in.query.get((airports[i][0], airports[i][1][j]))
             airports_info[key]['emigration'] = Emigration.query.get((airports[i][0], airports[i][1][j]))
             airports_info[key]['security'] = Security_checkpoint.query.get((airports[i][0], airports[i][1][j]))
-
+            airports_info[key]['checkin_grade'] = get_grade('check_in',Check_in.query.get((airports[i][0], airports[i][1][j])).sys_waitingtime)
+            airports_info[key]['emigration_grade'] = get_grade('emigration',Emigration.query.get((airports[i][0], airports[i][1][j])).sys_waitingtime)
+            airports_info[key]['security_grade'] = get_grade('security_checkpoint',Security_checkpoint.query.get((airports[i][0], airports[i][1][j])).sys_waitingtime)
+            airports_info[key]['score'] = overall_grade(airports_info[key]['checkin_grade'],airports_info[key]['emigration_grade'],airports_info[key]['security_grade'])
     return render_template("benchmarking/result.html",
                             airports_info = airports_info,
                             title = 'Benchmarking')
@@ -56,3 +58,39 @@ def get_diagTimes(airport_code):
     for i in selection:
         diag_timings.append(i.diag_time)
     return (diag_timings)
+
+def get_grade(process,value):
+    proc_OD_UB = Iata_los.query.get(process).overdesign_UB
+    proc_SO_LB = Iata_los.query.get(process).suboptimum_LB
+    if value/60 < proc_OD_UB:  #value is in seconds
+        result = 'Over-design'
+    elif value > proc_SO_LB:
+        result = 'Suboptimum'
+    else:
+        result = 'Optimum'
+    return result
+
+def overall_grade(checkin_grade, emigration_grade, security_grade):
+    score = 1/3*(process_point("check_in",checkin_grade)+process_point("emigration",emigration_grade)+process_point("security_checkpoint",security_grade))
+    print (score)
+    if score >2.5:
+        grade = ["A","(Over-design)"]
+    elif score>2 and score <=2.5:
+        grade = ["A","(Optimum)"]
+    elif score<=2 and score>1:
+        grade = ["B",""]
+    elif score<=1:
+        grade = ["C",""]
+    return grade
+
+def process_point(process,grade):
+    metrics = Metric.query.get(process)
+    weight = metrics.weight
+    if grade == "Over-design":
+        points = metrics.p_overdesign
+    elif grade == "Optimum":
+        points = metrics.p_optimum
+    elif grade == "Suboptimum":
+        points = metrics.p_suboptimum
+    return weight*points
+

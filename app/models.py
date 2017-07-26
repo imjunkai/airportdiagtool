@@ -45,6 +45,9 @@ class Check_in(db.Model):
 	queue_waitingtime = db.Column(db.Float, nullable=False)
 	sys_avgpeople = db.Column(db.Float, nullable=False)
 	sys_waitingtime = db.Column(db.Float, nullable=False)
+	avgwaitingarea_space = db.Column(db.Float, nullable=False)
+	waitingarea_length = db.Column(db.Float, nullable=False)
+	waitingarea_breadth = db.Column(db.Float, nullable=False)
 
 	def __init__(self,**kwargs):
 		self.airport_id = kwargs['airport_id']
@@ -54,6 +57,9 @@ class Check_in(db.Model):
 		self.queue_waitingtime = kwargs['queue_waitingtime']
 		self.sys_avgpeople = kwargs['sys_avgpeople']
 		self.sys_waitingtime = kwargs['sys_waitingtime']
+		self.avgwaitingarea_space = kwargs['avgwaitingarea_space']
+		self.waitingarea_length = kwargs['waitingarea_length']
+		self.waitingarea_breadth = kwargs['waitingarea_breadth']
 
 	def __repr__(self):
 		return '%s, %s' % (self.airport_id, self.diag_time)
@@ -68,6 +74,9 @@ class Check_in(db.Model):
 		'queue_waitingtime': self.queue_waitingtime,
 		'sys_avgpeople': self.sys_avgpeople,
 		'sys_waitingtime': self.sys_waitingtime,
+		'avgwaitingarea_space': self.avgwaitingarea_space,
+		'waitingarea_length': self.waitingarea_length,
+		'waitingarea_breadth': self.waitingarea_breadth,
 		}
 
 class Emigration(db.Model):
@@ -78,6 +87,9 @@ class Emigration(db.Model):
 	queue_waitingtime = db.Column(db.Float, nullable=False)
 	sys_avgpeople = db.Column(db.Float, nullable=False)
 	sys_waitingtime = db.Column(db.Float, nullable=False)
+	avgwaitingarea_space = db.Column(db.Float, nullable=False)
+	waitingarea_length = db.Column(db.Float, nullable=False)
+	waitingarea_breadth = db.Column(db.Float, nullable=False)
 
 	def __init__(self,**kwargs):
 		self.airport_id = kwargs['airport_id']
@@ -87,6 +99,9 @@ class Emigration(db.Model):
 		self.queue_waitingtime = kwargs['queue_waitingtime']
 		self.sys_avgpeople = kwargs['sys_avgpeople']
 		self.sys_waitingtime = kwargs['sys_waitingtime']
+		self.avgwaitingarea_space = kwargs['avgwaitingarea_space']
+		self.waitingarea_length = kwargs['waitingarea_length']
+		self.waitingarea_breadth = kwargs['waitingarea_breadth']
 
 	def __repr__(self):
 		return '%s, %s' % (self.airport_id, self.diag_time)
@@ -101,8 +116,10 @@ class Emigration(db.Model):
 		'queue_waitingtime': self.queue_waitingtime,
 		'sys_avgpeople': self.sys_avgpeople,
 		'sys_waitingtime': self.sys_waitingtime,
+		'avgwaitingarea_space': self.avgwaitingarea_space,
+		'waitingarea_length': self.waitingarea_length,
+		'waitingarea_breadth': self.waitingarea_breadth,
 		}
-
 class Security_checkpoint(db.Model):
 	airport_id = db.Column(db.String(3), db.ForeignKey('airport.iata_code'), primary_key=True)
 	diag_time = db.Column(db.Date, primary_key=True)
@@ -111,6 +128,9 @@ class Security_checkpoint(db.Model):
 	queue_waitingtime = db.Column(db.Float, nullable=False)
 	sys_avgpeople = db.Column(db.Float, nullable=False)
 	sys_waitingtime = db.Column(db.Float, nullable=False)
+	avgwaitingarea_space = db.Column(db.Float, nullable=False)
+	waitingarea_length = db.Column(db.Float, nullable=False)
+	waitingarea_breadth = db.Column(db.Float, nullable=False)
 
 	def __init__(self,**kwargs):
 		self.airport_id = kwargs['airport_id']
@@ -120,6 +140,9 @@ class Security_checkpoint(db.Model):
 		self.queue_waitingtime = kwargs['queue_waitingtime']
 		self.sys_avgpeople = kwargs['sys_avgpeople']
 		self.sys_waitingtime = kwargs['sys_waitingtime']
+		self.avgwaitingarea_space = kwargs['avgwaitingarea_space']
+		self.waitingarea_length = kwargs['waitingarea_length']
+		self.waitingarea_breadth = kwargs['waitingarea_breadth']
 
 	def __repr__(self):
 		return '%s, %s' % (self.airport_id, self.diag_time)
@@ -134,17 +157,24 @@ class Security_checkpoint(db.Model):
 		'queue_waitingtime': self.queue_waitingtime,
 		'sys_avgpeople': self.sys_avgpeople,
 		'sys_waitingtime': self.sys_waitingtime,
+		'avgwaitingarea_space': self.avgwaitingarea_space,
+		'waitingarea_length': self.waitingarea_length,
+		'waitingarea_breadth': self.waitingarea_breadth,
 		}
 
 class Iata_los(db.Model):
 	process = db.Column(db.String(45), primary_key=True)
 	overdesign_UB  = db.Column(db.Float, nullable=False)
 	suboptimum_LB = db.Column(db.Float, nullable=False)
+	space_overdesign_LB  = db.Column(db.Float, nullable=False)
+	space_suboptimum_UB = db.Column(db.Float, nullable=False)
 
 	def __init__(self,**kwargs):
 		self.process = kwargs['process']
 		self.overdesign_UB = kwargs['overdesign_UB']
 		self.suboptimum_LB = kwargs['suboptimum_LB']
+		self.space_overdesign_LB = kwargs['space_overdesign_UB']
+		self.space_suboptimum_UB = kwargs['space_suboptimum_LB']
 
 	def __repr__(self):
 		return '%s, %s' % (self.overdesign_UB, self.suboptimum_LB)

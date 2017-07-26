@@ -58,6 +58,12 @@
                         <td>{{ airports_info[i]['information'].size }}</td>
                       {% endfor %}
                     </tr>
+                    <tr>
+                      <td>Overall Grade:</td>
+                      {% for i in airports_info %}
+                        <td>{{ airports_info[i]['score'][0] }} {{ airports_info[i]['score'][1] }}</td>
+                      {% endfor %}
+                    </tr>
                   </tbody>
                 </table>
               </div>
@@ -115,9 +121,9 @@
                       {% endfor %}
                     </tr>
                     <tr>
-                      <td>IATA LoS Grade:</td>
+                      <td>Level of Service Grade:</td>
                       {% for i in airports_info %}
-                        <td>BLABLABLA FOR NOW LA</td>
+                        <td>{{ airports_info[i]['checkin_grade'] }}</td>
                       {% endfor %}
                     </tr>
                   </tbody>
@@ -177,9 +183,9 @@
                       {% endfor %}
                     </tr>
                     <tr>
-                      <td>IATA LoS Grade:</td>
+                      <td>Level of Service Grade:</td>
                       {% for i in airports_info %}
-                        <td>BLABLABLA FOR NOW LA</td>
+                        <td>{{ airports_info[i]['emigration_grade'] }}</td>
                       {% endfor %}
                     </tr>
                   </tbody>
@@ -239,9 +245,9 @@
                       {% endfor %}
                     </tr>
                     <tr>
-                      <td>IATA LoS Grade:</td>
+                      <td>Level of Service Grade:</td>
                       {% for i in airports_info %}
-                        <td>BLABLABLA FOR NOW LA</td>
+                        <td>{{ airports_info[i]['security_grade'] }}</td>
                       {% endfor %}
                     </tr>
                   </tbody>

@@ -17,6 +17,13 @@
 
 label {
     font-weight: normal;
+    color: black;
+    text-decoration: none;
+    padding: 12px 16px;
+}
+
+.label:hover {
+    background-color: #f58220;
 }
 
 .dropdown-content {
@@ -42,10 +49,12 @@ label {
     display: block;
 }
 
-.dropdown:hover .dropbtn {
-    background-color: #f58220;
-}
 
 .checkbox {
     padding: 12px 16px;
+}
+
+.submit {
+    float: right;
+    align-items: center;
 }
