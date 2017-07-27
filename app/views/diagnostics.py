@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, redirect, flash, url_for, request
 from app import app, db
 from flask_login import login_required
 from app.models import Airport, Check_in, Emigration, Security_checkpoint, Iata_los, Metric
-from app.forms import AddArea, AddAirport
+from app.forms import AddArea, AddAirport, AddDiagnostics
 import datetime
 import random
 
@@ -49,19 +49,53 @@ def addairport():
 @mod.route('/adddiagnostics',methods=['POST','GET'])
 @login_required
 def adddiagnostics():
-    form = AddAirport()
+    form = AddDiagnostics()
     if request.method == 'POST' and form.validate():
-        newAirport = Airport(
-            iata_code = form.new_iata_code.data,
-            icao_code = form.new_icao_code.data,
-            name = form.new_name.data,
-            city = form.new_city.data,
-            country = form.new_country.data,
-            size = form.new_size.data)
-        # print (newAirport)
-        db.session.add(newAirport)
+        newCheckin = Check_in(
+            airport_id = form.iata_code.data,
+            diag_time = form.diag_time.data,
+            uti_rate = form.checkin_uti_rate.data,
+            queue_avgpeople = form.checkin_queue_avgpeople.data,
+            queue_waitingtime = form.checkin_queue_waitingtime.data,
+            sys_avgpeople = form.checkin_sys_avgpeople.data,
+            sys_waitingtime = form.checkin_sys_waitingtime.data,
+            avgwaitingarea_space = round(form.checkin_waitingarea_length.data*form.checkin_waitingarea_breadth.data/form.checkin_queue_avgpeople.data,1),
+            waitingarea_length = form.checkin_waitingarea_length.data,
+            waitingarea_breadth = form.checkin_waitingarea_breadth.data)
+        
+        newEmigration = Emigration(
+            airport_id = form.iata_code.data,
+            diag_time = form.diag_time.data,
+            uti_rate = form.emigration_uti_rate.data,
+            queue_avgpeople = form.emigration_queue_avgpeople.data,
+            queue_waitingtime = form.emigration_queue_waitingtime.data,
+            sys_avgpeople = form.emigration_sys_avgpeople.data,
+            sys_waitingtime = form.emigration_sys_waitingtime.data,
+            waitingarea_length = form.emigration_waitingarea_length.data,
+            waitingarea_breadth = form.emigration_waitingarea_breadth.data,
+            avgwaitingarea_space = round(form.emigration_waitingarea_length.data*form.emigration_waitingarea_breadth.data/form.emigration_queue_avgpeople.data,1))
+        
+        newSecurity = Security_checkpoint(
+            airport_id = form.iata_code.data,
+            diag_time = form.diag_time.data,
+            uti_rate = form.security_uti_rate.data,
+            queue_avgpeople = form.security_queue_avgpeople.data,
+            queue_waitingtime = form.security_queue_waitingtime.data,
+            sys_avgpeople = form.security_sys_avgpeople.data,
+            sys_waitingtime = form.security_sys_waitingtime.data,
+            waitingarea_length = form.security_waitingarea_length.data,
+            waitingarea_breadth = form.security_waitingarea_breadth.data,
+            avgwaitingarea_space = round(form.security_waitingarea_length.data*form.security_waitingarea_breadth.data/form.security_queue_avgpeople.data,1))
+
+        db.session.add(newCheckin)
+        db.session.add(newEmigration)
+        db.session.add(newSecurity)
         db.session.commit()
         return redirect(url_for('diagnostics.selection'))
+    else:
+        print("FAILED")
+        print(form.errors)
+
     return render_template("diagnostics/adddiagnostics.html",
                             title = 'Add Diagnostics',
                             form = form)

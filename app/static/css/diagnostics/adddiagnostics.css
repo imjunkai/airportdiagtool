@@ -1,0 +1,101 @@
+.dropbtn {
+    background-color: #7d6a55;
+    color: white;
+    padding: 16px;
+    font-size: 18px;
+    border: none;
+    cursor: pointer;
+    height: 150px;
+    width: 300px;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    margin: 10px;
+}
+
+.dropdown-content {
+    display: none;
+    font-size: 16px;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 200px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #f58220;
+}
+
+.submit {
+    float: right;
+    align-items: center;
+}
+
+.center {
+    width: 500px;
+}
+
+.table tbody {
+    font-size: 16px;
+    font-weight: normal;
+}
+
+.table th {
+    font-size: 16px;
+    font-weight: normal;
+}
+
+.panel {
+    color: white}
+    
+.panel-body{
+    font-size: 16px;
+    color: black;
+    background-color: #FFFFFF;
+    text-align: left;
+}
+
+.panel-body-processes th{
+    font-weight:normal;
+}
+
+.panel-checkin{
+    border-color:  #8b6f47;
+    background-color: #8b6f47;
+}
+
+.panel-emigration{
+    border-color:  #8b6f47;
+    background-color: #8b6f47;
+}
+
+.panel-security{
+    border-color:  #8b6f47;
+    background-color: #8b6f47;
+}
+
+.spaceinput {
+    padding-bottom: 10px;
+}
+
+.form-control {
+    width: 100px;
+    float: right;
+    vertical-align: middle;
+}

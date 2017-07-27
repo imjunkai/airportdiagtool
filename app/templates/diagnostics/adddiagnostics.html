@@ -1,58 +1,199 @@
 {% extends "base.html" %}
 
 {% block css %}
-<link rel="stylesheet" href="{{ url_for('static', filename="css/diagnostics/selection.css") }}">
+<link rel="stylesheet" href="{{ url_for('static', filename="css/diagnostics/adddiagnostics.css") }}">
 {% endblock %}
 
 {% block content %}
     
     <div class="col-sm-10">
-      <div class="container">
-        <form action="{{ url_for('diagnostics.addairport') }}" method="post" name="addarea" class="form-horizontal">
+      <form action="{{ url_for('diagnostics.adddiagnostics') }}" method="post" class="form-horizontal">
+        <div class="container">
           <table class="table">
             <thead>
-              <h1>Add New Airport</h1>
+              <h1>Add New Diagnostics</h1>
             </thead>
             <tbody>
               <tr>
-                <td>IATA</td>
-                <td><input type="text" class="form-control" name="new_iata_code"></td>
+                <td style="width:200px;">IATA Code</td>
+                <td><input type="text" class="form-control iata" name="iata_code" style="width:100px; float: left;"></td>
               </tr>
               <tr>
-                <td>ICAO</td>
-                <td><input type="text" class="form-control" name="new_icao_code"></td>
-              </tr>
-              <tr>
-                <td>Name</td>
-                <td><input type="text" class="form-control" name="new_name"></td>
-              </tr>
-              <tr>
-                <td>City</td>
-                <td><input type="text" class="form-control" name="new_city"></td>
-              </tr>
-              <tr>
-                <td>Country</td>
-                <td><input type="text" class="form-control" name="new_country"></td>
-              </tr>
-              <tr>
-                <td>Size</td>
-                <td>
-                  <select type="text" class="form-control" name="new_size">
-                    <option>Small</option>
-                    <option>Medium</option>
-                    <option>Large</option>
-                  </select>
-                </td>
+                <td style="width:200px;">Date of Diagnosis</td>
+                <td><input type="date" name="diag_time"></td>
               </tr>
             </tbody>
           </table>
-          <div class="col-sm-4">
-            <input class="btn btn-default" type="submit" value="Submit">
-            {{ form.csrf_token }}
-            <a href="{{ url_for('diagnostics.selection') }}" class="btn btn-default">Cancel</a>
-          </div>
-        </form>
-      </div>
+              <div class="col-sm-4">
+                <div class="panel panel-checkin">
+                  <div class="panel-heading"><h2>Check-in</h2></div>
+                  <div class="panel-body panel-body-processes">
+                    <table class="table table-hover">
+                      <tbody>
+                        <tr>
+                            <td style="vertical-align: middle;">Utilization Rate</td>
+                            <td colspan="2" style="text-align: center;">
+                              <input type="text" class="form-control" name="checkin_uti_rate">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="vertical-align: middle;">Queue<br>(Average no. of people)</td>
+                            <td colspan="2" style="text-align: center;">
+                              <input type="text" class="form-control" name="checkin_queue_avgpeople">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="vertical-align: middle;">Queue (Waiting Time)</td>
+                            <td colspan="2" style="text-align: center;">
+                              <input type="text" class="form-control" name="checkin_queue_waitingtime">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="vertical-align: middle;">System<br>(Average no. of people)</td>
+                            <td colspan="2" style="text-align: center;">
+                              <input type="text" class="form-control" name="checkin_sys_avgpeople">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="vertical-align: middle;">System (Waiting Time)</td>
+                            <td colspan="2" style="text-align: center;">
+                              <input type="text" class="form-control" name="checkin_sys_waitingtime">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="vertical-align: middle;">Waiting Area (Length)</td>
+                            <td colspan="2" style="text-align: center;">
+                              <input type="text" class="form-control" name="checkin_waitingarea_length">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="vertical-align: middle;">Waiting Area (Breadth)</td>
+                            <td colspan="2" style="text-align: center;">
+                              <input type="text" class="form-control" name="checkin_waitingarea_breadth">
+                            </td>
+                        </tr>
+
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="panel panel-checkin">
+                  <div class="panel-heading"><h2>Emigration</h2></div>
+                  <div class="panel-body panel-body-processes">
+                    <table class="table table-hover">
+                      <tbody>
+                        <tr>
+                            <td style="vertical-align: middle;">Utilization Rate</td>
+                            <td colspan="2" style="text-align: center;">
+                              <input type="text" class="form-control" name="emigration_uti_rate">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="vertical-align: middle;">Queue<br>(Average no. of people)</td>
+                            <td colspan="2" style="text-align: center;">
+                              <input type="text" class="form-control" name="emigration_queue_avgpeople">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="vertical-align: middle;">Queue (Waiting Time)</td>
+                            <td colspan="2" style="text-align: center;">
+                              <input type="text" class="form-control" name="emigration_queue_waitingtime">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="vertical-align: middle;">System<br>(Average no. of people)</td>
+                            <td colspan="2" style="text-align: center;">
+                              <input type="text" class="form-control" name="emigration_sys_avgpeople">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="vertical-align: middle;">System (Waiting Time)</td>
+                            <td colspan="2" style="text-align: center;">
+                              <input type="text" class="form-control" name="emigration_sys_waitingtime">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="vertical-align: middle;">Waiting Area (Length)</td>
+                            <td colspan="2" style="text-align: center;">
+                              <input type="text" class="form-control" name="emigration_waitingarea_length">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="vertical-align: middle;">Waiting Area (Breadth)</td>
+                            <td colspan="2" style="text-align: center;">
+                              <input type="text" class="form-control" name="emigration_waitingarea_breadth">
+                            </td>
+                        </tr>
+
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="panel panel-checkin">
+                  <div class="panel-heading"><h2>Security Checkpoint</h2></div>
+                  <div class="panel-body panel-body-processes">
+                    <table class="table table-hover">
+                      <tbody>
+                        <tr>
+                            <td style="vertical-align: middle;">Utilization Rate</td>
+                            <td colspan="2" style="text-align: center;">
+                              <input type="text" class="form-control" name="security_uti_rate">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="vertical-align: middle;">Queue<br>(Average no. of people)</td>
+                            <td colspan="2" style="text-align: center;">
+                              <input type="text" class="form-control" name="security_queue_avgpeople">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="vertical-align: middle;">Queue (Waiting Time)</td>
+                            <td colspan="2" style="text-align: center;">
+                              <input type="text" class="form-control" name="security_queue_waitingtime">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="vertical-align: middle;">System<br>(Average no. of people)</td>
+                            <td colspan="2" style="text-align: center;">
+                              <input type="text" class="form-control" name="security_sys_avgpeople">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="vertical-align: middle;">System (Waiting Time)</td>
+                            <td colspan="2" style="text-align: center;">
+                              <input type="text" class="form-control" name="security_sys_waitingtime">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="vertical-align: middle;">Waiting Area (Length)</td>
+                            <td colspan="2" style="text-align: center;">
+                              <input type="text" class="form-control" name="security_waitingarea_length">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="vertical-align: middle;">Waiting Area (Breadth)</td>
+                            <td colspan="2" style="text-align: center;">
+                              <input type="text" class="form-control" name="security_waitingarea_breadth">
+                            </td>
+                        </tr>
+
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6 col-sm-offset-5 spaceinput">
+              <input class="btn btn-default" type="submit" value="Submit" style="padding-right: 10px;">
+              {{ form.csrf_token }}
+              <a href="{{ url_for('diagnostics.selection') }}" class="btn btn-default">Cancel</a>
+            </div>
+          </form>
+        </div>
     </div>
   </div>
 </div>
