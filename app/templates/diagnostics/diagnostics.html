@@ -62,7 +62,7 @@
                     </tr>
                     <tr>
                       <td>Queue (Waiting Time):</td>
-                      <td>{{ checkin_info.queue_waitingtime }} min</td>
+                      <td>{{ checkin_info.queue_waitingtime }} sec</td>
                     </tr>
                     <tr>
                       <td>System (Average no. of people):</td>
@@ -70,7 +70,7 @@
                     </tr>
                     <tr>
                       <td>System (Waiting Time):</td>
-                      <td>{{ checkin_info.sys_waitingtime }} min</td>
+                      <td>{{ checkin_info.sys_waitingtime }} sec</td>
                     </tr>
                     <tr>
                       <td>Level of Service Grade:</td>
@@ -88,6 +88,11 @@
                       <td>{{ checkin_grade_space }}</td>
                     </tr>
                       {% endif %}
+                    <tr>
+                      <td colspan="2" style="text-align: center;">
+                        <a href="{{ checkin_link }}" class="btn btn-default">Sensitivity Analysis</a>
+                      </td>
+                    </tr>
                   </tbody>
                 </table>
               </div>
@@ -109,7 +114,7 @@
                     </tr>
                     <tr>
                       <td>Queue (Waiting Time):</td>
-                      <td>{{ emigration_info.queue_waitingtime }} min</td>
+                      <td>{{ emigration_info.queue_waitingtime }} sec</td>
                     </tr>
                     <tr>
                       <td>System (Average no. of people):</td>
@@ -117,7 +122,7 @@
                     </tr>
                     <tr>
                       <td>System (Waiting Time):</td>
-                      <td>{{ emigration_info.sys_waitingtime }} min</td>
+                      <td>{{ emigration_info.sys_waitingtime }} sec</td>
                     </tr>
                     <tr>
                       <td>Level of Service Grade:</td>
@@ -135,6 +140,11 @@
                       <td>{{ emigration_grade_space }}</td>
                     </tr>
                       {% endif %}
+                    <tr>
+                      <td colspan="2" style="text-align: center;">
+                        <a href="{{ checkin_link }}" class="btn btn-default">Sensitivity Analysis</a>
+                      </td>
+                    </tr>
                   </tbody>
                 </table>
               </div>
@@ -156,7 +166,7 @@
                     </tr>
                     <tr>
                       <td>Queue (Waiting Time):</td>
-                      <td>{{ security_info.queue_waitingtime }} min</td>
+                      <td>{{ security_info.queue_waitingtime }} sec</td>
                     </tr>
                     <tr>
                       <td>System (Average no. of people):</td>
@@ -164,7 +174,7 @@
                     </tr>
                     <tr>
                       <td>System (Waiting Time):</td>
-                      <td>{{ security_info.sys_waitingtime }} min</td>
+                      <td>{{ security_info.sys_waitingtime }} sec</td>
                     </tr>
                     <tr>
                       <td>Level of Service Grade:</td>
@@ -182,6 +192,11 @@
                       <td>{{ security_grade_space }}</td>
                     </tr>
                       {% endif %}
+                    <tr>
+                      <td colspan="2" style="text-align: center;">
+                        <a href="{{ checkin_link }}" class="btn btn-default">Sensitivity Analysis</a>
+                      </td>
+                    </tr>
                   </tbody>
                 </table>
               </div>

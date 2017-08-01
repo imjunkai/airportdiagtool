@@ -48,6 +48,8 @@ class Check_in(db.Model):
 	avgwaitingarea_space = db.Column(db.Float, nullable=False)
 	waitingarea_length = db.Column(db.Float, nullable=False)
 	waitingarea_breadth = db.Column(db.Float, nullable=False)
+	avg_interarrival = db.Column(db.Float, nullable=False)
+	avg_processing = db.Column(db.Float, nullable=False)
 
 	def __init__(self,**kwargs):
 		self.airport_id = kwargs['airport_id']
@@ -60,6 +62,8 @@ class Check_in(db.Model):
 		self.avgwaitingarea_space = kwargs['avgwaitingarea_space']
 		self.waitingarea_length = kwargs['waitingarea_length']
 		self.waitingarea_breadth = kwargs['waitingarea_breadth']
+		self.avg_interarrival = kwargs['avg_interarrival']
+		self.avg_processing = kwargs['avg_processing']
 
 	def __repr__(self):
 		return '%s, %s' % (self.airport_id, self.diag_time)
@@ -77,6 +81,8 @@ class Check_in(db.Model):
 		'avgwaitingarea_space': self.avgwaitingarea_space,
 		'waitingarea_length': self.waitingarea_length,
 		'waitingarea_breadth': self.waitingarea_breadth,
+		'avg_interarrival': self.avg_interarrival,
+		'avg_processing': self.avg_processing,
 		}
 
 class Emigration(db.Model):
@@ -90,6 +96,9 @@ class Emigration(db.Model):
 	avgwaitingarea_space = db.Column(db.Float, nullable=False)
 	waitingarea_length = db.Column(db.Float, nullable=False)
 	waitingarea_breadth = db.Column(db.Float, nullable=False)
+	avg_interarrival = db.Column(db.Float, nullable=False)
+	avg_processing = db.Column(db.Float, nullable=False)
+
 
 	def __init__(self,**kwargs):
 		self.airport_id = kwargs['airport_id']
@@ -102,6 +111,8 @@ class Emigration(db.Model):
 		self.avgwaitingarea_space = kwargs['avgwaitingarea_space']
 		self.waitingarea_length = kwargs['waitingarea_length']
 		self.waitingarea_breadth = kwargs['waitingarea_breadth']
+		self.avg_interarrival = kwargs['avg_interarrival']
+		self.avg_processing = kwargs['avg_processing']
 
 	def __repr__(self):
 		return '%s, %s' % (self.airport_id, self.diag_time)
@@ -119,7 +130,10 @@ class Emigration(db.Model):
 		'avgwaitingarea_space': self.avgwaitingarea_space,
 		'waitingarea_length': self.waitingarea_length,
 		'waitingarea_breadth': self.waitingarea_breadth,
+		'avg_interarrival': self.avg_interarrival,
+		'avg_processing': self.avg_processing,
 		}
+		
 class Security_checkpoint(db.Model):
 	airport_id = db.Column(db.String(3), db.ForeignKey('airport.iata_code'), primary_key=True)
 	diag_time = db.Column(db.Date, primary_key=True)
@@ -131,6 +145,8 @@ class Security_checkpoint(db.Model):
 	avgwaitingarea_space = db.Column(db.Float, nullable=False)
 	waitingarea_length = db.Column(db.Float, nullable=False)
 	waitingarea_breadth = db.Column(db.Float, nullable=False)
+	avg_interarrival = db.Column(db.Float, nullable=False)
+	avg_processing = db.Column(db.Float, nullable=False)
 
 	def __init__(self,**kwargs):
 		self.airport_id = kwargs['airport_id']
@@ -143,6 +159,8 @@ class Security_checkpoint(db.Model):
 		self.avgwaitingarea_space = kwargs['avgwaitingarea_space']
 		self.waitingarea_length = kwargs['waitingarea_length']
 		self.waitingarea_breadth = kwargs['waitingarea_breadth']
+		self.avg_interarrival = kwargs['avg_interarrival']
+		self.avg_processing = kwargs['avg_processing']
 
 	def __repr__(self):
 		return '%s, %s' % (self.airport_id, self.diag_time)
@@ -160,6 +178,8 @@ class Security_checkpoint(db.Model):
 		'avgwaitingarea_space': self.avgwaitingarea_space,
 		'waitingarea_length': self.waitingarea_length,
 		'waitingarea_breadth': self.waitingarea_breadth,
+		'avg_interarrival': self.avg_interarrival,
+		'avg_processing': self.avg_processing,
 		}
 
 class Iata_los(db.Model):

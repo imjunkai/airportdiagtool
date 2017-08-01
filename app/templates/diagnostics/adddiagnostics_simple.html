@@ -7,7 +7,7 @@
 {% block content %}
     
     <div class="col-sm-10">
-      <form action="{{ url_for('diagnostics.adddiagnostics') }}" method="post" class="form-horizontal">
+      <form action="{{ url_for('diagnostics.adddiagnostics_simple') }}" method="post" class="form-horizontal">
         <div class="container">
           <table class="table">
             <thead>
@@ -31,33 +31,15 @@
                     <table class="table table-hover">
                       <tbody>
                         <tr>
-                            <td style="vertical-align: middle;">Utilization Rate</td>
+                            <td style="vertical-align: middle;">Average Interarrival Time</td>
                             <td colspan="2" style="text-align: center;">
-                              <input type="text" placeholder="between 0 and 1" class="form-control" name="checkin_uti_rate">
+                              <input type="text" placeholder="seconds" class="form-control" name="checkin_avg_interarrival">
                             </td>
                         </tr>
                         <tr>
-                            <td style="vertical-align: middle;">Queue<br>(Average no. of people)</td>
+                            <td style="vertical-align: middle;">Average Processing Time</td>
                             <td colspan="2" style="text-align: center;">
-                              <input type="text" class="form-control" name="checkin_queue_avgpeople">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="vertical-align: middle;">Queue (Waiting Time)</td>
-                            <td colspan="2" style="text-align: center;">
-                              <input type="text" placeholder="seconds" class="form-control" name="checkin_queue_waitingtime">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="vertical-align: middle;">System<br>(Average no. of people)</td>
-                            <td colspan="2" style="text-align: center;">
-                              <input type="text" class="form-control" name="checkin_sys_avgpeople">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="vertical-align: middle;">System (Waiting Time)</td>
-                            <td colspan="2" style="text-align: center;">
-                              <input type="text" placeholder="seconds" class="form-control" name="checkin_sys_waitingtime">
+                              <input type="text" placeholder="seconds" class="form-control" name="checkin_avg_processing">
                             </td>
                         </tr>
                         <tr>
@@ -72,7 +54,6 @@
                               <input type="text" placeholder="metres" class="form-control" name="checkin_waitingarea_breadth">
                             </td>
                         </tr>
-
                       </tbody>
                     </table>
                   </div>
@@ -85,33 +66,15 @@
                     <table class="table table-hover">
                       <tbody>
                         <tr>
-                            <td style="vertical-align: middle;">Utilization Rate</td>
+                            <td style="vertical-align: middle;">Average Interarrival Time</td>
                             <td colspan="2" style="text-align: center;">
-                              <input type="text" placeholder="between 0 and 1" class="form-control" name="emigration_uti_rate">
+                              <input type="text" placeholder="seconds" class="form-control" name="emigration_avg_interarrival">
                             </td>
                         </tr>
                         <tr>
-                            <td style="vertical-align: middle;">Queue<br>(Average no. of people)</td>
+                            <td style="vertical-align: middle;">Average Processing Time</td>
                             <td colspan="2" style="text-align: center;">
-                              <input type="text" class="form-control" name="emigration_queue_avgpeople">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="vertical-align: middle;">Queue (Waiting Time)</td>
-                            <td colspan="2" style="text-align: center;">
-                              <input type="text" placeholder="seconds" class="form-control" name="emigration_queue_waitingtime">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="vertical-align: middle;">System<br>(Average no. of people)</td>
-                            <td colspan="2" style="text-align: center;">
-                              <input type="text" class="form-control" name="emigration_sys_avgpeople">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="vertical-align: middle;">System (Waiting Time)</td>
-                            <td colspan="2" style="text-align: center;">
-                              <input type="text" placeholder="seconds" class="form-control" name="emigration_sys_waitingtime">
+                              <input type="text" placeholder="seconds" class="form-control" name="emigration_avg_processing">
                             </td>
                         </tr>
                         <tr>
@@ -126,7 +89,6 @@
                               <input type="text" placeholder="metres" class="form-control" name="emigration_waitingarea_breadth">
                             </td>
                         </tr>
-
                       </tbody>
                     </table>
                   </div>
@@ -139,33 +101,15 @@
                     <table class="table table-hover">
                       <tbody>
                         <tr>
-                            <td style="vertical-align: middle;">Utilization Rate</td>
+                            <td style="vertical-align: middle;">Average Interarrival Time</td>
                             <td colspan="2" style="text-align: center;">
-                              <input type="text" placeholder="between 0 and 1" class="form-control" name="security_uti_rate">
+                              <input type="text" placeholder="seconds" class="form-control" name="security_avg_interarrival">
                             </td>
                         </tr>
                         <tr>
-                            <td style="vertical-align: middle;">Queue<br>(Average no. of people)</td>
+                            <td style="vertical-align: middle;">Average Processing Time</td>
                             <td colspan="2" style="text-align: center;">
-                              <input type="text" class="form-control" name="security_queue_avgpeople">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="vertical-align: middle;">Queue (Waiting Time)</td>
-                            <td colspan="2" style="text-align: center;">
-                              <input type="text" placeholder="seconds" class="form-control" name="security_queue_waitingtime">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="vertical-align: middle;">System<br>(Average no. of people)</td>
-                            <td colspan="2" style="text-align: center;">
-                              <input type="text" class="form-control" name="security_sys_avgpeople">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="vertical-align: middle;">System (Waiting Time)</td>
-                            <td colspan="2" style="text-align: center;">
-                              <input type="text" placeholder="seconds" class="form-control" name="security_sys_waitingtime">
+                              <input type="text" placeholder="seconds" class="form-control" name="security_avg_processing">
                             </td>
                         </tr>
                         <tr>
@@ -180,7 +124,6 @@
                               <input type="text" placeholder="metres" class="form-control" name="security_waitingarea_breadth">
                             </td>
                         </tr>
-
                       </tbody>
                     </table>
                   </div>
